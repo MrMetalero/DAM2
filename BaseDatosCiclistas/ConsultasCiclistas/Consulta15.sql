@@ -1,0 +1,1 @@
+SELECT netapa FROM etapa WHERE 

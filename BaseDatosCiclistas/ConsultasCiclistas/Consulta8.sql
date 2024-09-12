@@ -1,0 +1,1 @@
+SELECT AVG(edad) FROM ciclista

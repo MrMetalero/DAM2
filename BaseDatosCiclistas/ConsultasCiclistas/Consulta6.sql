@@ -1,0 +1,1 @@
+SELECT COUNT(*) FROM ciclista where edad >25
