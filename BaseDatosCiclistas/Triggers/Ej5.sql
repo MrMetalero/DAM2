@@ -3,11 +3,14 @@ RETURNS trigger
 LANGUAGE 'plpgsql'
 COST 100
 VOLATILE NOT LEAKPROOF
+
 AS $BODY$
-DECLARE equipo_a_comprobar 
 
 BEGIN
-    IF ((SELECT COUNT(nomeq) FROM ciclista)> 20)
+    IF ((SELECT COUNT(nomeq) FROM ciclista WHERE nomeq = NEW.nomeq ) > 19)
+    THEN RAISE EXCEPTION 'NO SE PUEDE INTRODUCIR MÁS CICLISTAS EN ESTE EQUIPO';
+    ELSE RETURN NEW;
+    END IF;
     
 END;
 $BODY$;
@@ -15,5 +18,35 @@ $BODY$;
 
 CREATE OR REPLACE TRIGGER tg_max_20_ciclistas_equipo
 BEFORE INSERT OR UPDATE
-ON ciclista FOR EACH ROW
+ON ciclista
+FOR EACH ROW
 EXECUTE FUNCTION max_20_ciclistas_equipo();
+
+--PARA COMPROBAR QUE LOS INSERTS SE HAN HECHO HASTA 19 CICLISTAS DE "Navigare"
+SELECT * FROM ciclista WHERE nomeq = 'Navigare'
+
+INSERT INTO ciclista VALUES(3000,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3001,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3002,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3003,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3004,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3005,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3006,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3007,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3008,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3009,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3010,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3011,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3012,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3013,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3014,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3015,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3016,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3017,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3018,'EJEMPLO', 18, 'Navigare');
+INSERT INTO ciclista VALUES(3019,'EJEMPLO', 18, 'Navigare');
+
+
+--BORRAR LOS INSERTS
+
+DELETE  FROM ciclista WHERE nombre = 'EJEMPLO';
