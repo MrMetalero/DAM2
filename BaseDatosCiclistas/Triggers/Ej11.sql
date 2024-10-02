@@ -6,8 +6,8 @@ CREATE TABLE grupo(
 CREATE TABLE usuario_grupo(
     id_participantes INTEGER,
     nparticipantes INTEGER,
-
-    CONSTRAINT pk_id_participantes PRIMARY KEY()
+    CONSTRAINT pk_id_participantes PRIMARY KEY(id_participantes,nparticipantes),
+    CONSTRAINT fk_idparticipantes_nparticipantes FOREIGN KEY () REFERENCES()
 )
 
 CREATE TABLE usuario(
