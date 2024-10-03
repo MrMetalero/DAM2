@@ -7,6 +7,7 @@ BEGIN
     UPDATE public.ciclista
     SET edad=edad-1 WHERE dorsal NOT IN (SELECT dorsal  FROM etapa GROUP BY dorsal HAVING COUNT(dorsal) > 1);
 
+
     UPDATE public.ciclista
     SET edad=edad+1000 
     WHERE dorsal IN 
@@ -16,6 +17,25 @@ BEGIN
     LIMIT 1);
 
 
+    UPDATE public.ciclista
+    SET edad=edad+100
+    WHERE dorsal IN 
+    (SELECT DISTINCT ON (codigo) dorsal, codigo, COUNT(*) as conteo
+        FROM llevar
+        GROUP BY dorsal, codigo
+        ORDER BY codigo, COUNT(*) DESC;
+    );
+
+    /*
+    --FUNCIONA  d
+
+    WITH vistaConteoPorDorsal AS (
+        SELECT codigo, dorsal, COUNT(*) as cuenta FROM llevar
+        GROUP BY llevar.dorsal, llevar.codigo
+    )
+    SELECT MAX(cuenta), codigo FROM vistaConteoPorDorsal
+    GROUP BY codigo
+    */
 
 
 END;
