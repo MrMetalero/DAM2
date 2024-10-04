@@ -91,3 +91,21 @@ CREATE TRIGGER tg_minimo_una_etapa_ganada
     EXECUTE FUNCTION public.minimo_una_etapa_ganada() ;
 
 
+-- e) Añade una nueva columna llamada premio en ciclista como un número entero
+ALTER TABLE ciclista
+ADD COLUMN premio INTEGER
+
+-- f1)  El que ha ganado más etapas gana 5000€.
+SELECT dorsal, COUNT(*) c1 FROM etapa
+GROUP BY dorsal
+ORDER BY c1 DESC
+LIMIT 1
+
+
+WITH vistaConteoPorDorsal AS (
+        SELECT  dorsal, COUNT(*) as cuenta FROM etapa
+        GROUP BY dorsal
+    )
+    SELECT MAX(cuenta),dorsal FROM vistaConteoPorDorsal
+    GROUP BY dorsal
+

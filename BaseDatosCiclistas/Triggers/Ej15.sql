@@ -16,6 +16,17 @@ BEGIN
     ORDER BY c1 DESC
     LIMIT 1);
 
+--INTENTANDO USAR >= ALL IN
+    UPDATE public.ciclista
+    SET edad=edad+1000 
+    WHERE dorsal >= ALL IN 
+    (SELECT dorsal FROM llevar 
+    GROUP BY dorsal, codigo 
+    HAVING count(*) >= ALL (select count(*) from llevar GROUP BY dorsal, codigo));
+   
+
+
+
 
     UPDATE public.ciclista
     SET edad=edad+100
