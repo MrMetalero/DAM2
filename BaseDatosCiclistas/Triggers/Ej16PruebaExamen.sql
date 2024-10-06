@@ -91,21 +91,75 @@ CREATE TRIGGER tg_minimo_una_etapa_ganada
     EXECUTE FUNCTION public.minimo_una_etapa_ganada() ;
 
 
--- e) Añade una nueva columna llamada premio en ciclista como un número entero
+-- e) Añade una nueva columna llamada premio en ciclista como un número entero DEFAULT 0
 ALTER TABLE ciclista
 ADD COLUMN premio INTEGER
 
 -- f1)  El que ha ganado más etapas gana 5000€.
-SELECT dorsal, COUNT(*) c1 FROM etapa
-GROUP BY dorsal
-ORDER BY c1 DESC
-LIMIT 1
+    --Para resetear el premio a 0 en todos
+    UPDATE ciclista
+    SET premio = 0
 
 
-WITH vistaConteoPorDorsal AS (
-        SELECT  dorsal, COUNT(*) as cuenta FROM etapa
+    UPDATE ciclista
+    SET premio = premio + 5000
+    WHERE dorsal IN (
+    SELECT dorsal
+    FROM (
+        SELECT dorsal, COUNT(dorsal) AS cuentadorsal
+        FROM etapa
         GROUP BY dorsal
+    ) AS subquery
+    WHERE cuentadorsal = (
+        SELECT MAX(cuentadorsal)
+        FROM (
+            SELECT COUNT(dorsal) AS cuentadorsal
+            FROM etapa
+            GROUP BY dorsal
+        ) AS inner_subquery
     )
-    SELECT MAX(cuenta),dorsal FROM vistaConteoPorDorsal
-    GROUP BY dorsal
+);
+
+-- f2)  El que ha ganado más puertos gana 3000€.
+    UPDATE ciclista
+    SET premio = premio + 3000
+    WHERE dorsal IN (
+    SELECT dorsal
+    FROM (
+        SELECT dorsal, COUNT(dorsal) AS cuentadorsal
+        FROM puerto
+        GROUP BY dorsal
+    ) AS subquery
+    WHERE cuentadorsal = (
+        SELECT MAX(cuentadorsal)
+        FROM (
+            SELECT COUNT(dorsal) AS cuentadorsal
+            FROM puerto
+            GROUP BY dorsal
+        ) AS inner_subquery
+    )
+);
+
+
+
+-- f3)  El que ha ganado más puertos gana 3000€.
+    UPDATE ciclista
+    SET premio = premio + 2000
+    WHERE dorsal IN (
+    SELECT dorsal
+    FROM (
+        SELECT dorsal, COUNT(codigo) AS cuentacodigo
+        FROM llevar
+        GROUP BY codigo, dorsal
+    ) AS subquery
+    WHERE cuentacodigo = (
+        SELECT MAX(cuentacodigo2)
+        FROM (
+            SELECT COUNT(codigo) AS cuentacodigo2
+            FROM llevar
+            GROUP BY codigo, llevar.dorsal
+        ) AS inner_subquery
+    )
+);
+
 
