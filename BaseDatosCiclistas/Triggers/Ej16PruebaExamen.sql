@@ -142,7 +142,7 @@ ADD COLUMN premio INTEGER
 
 
 
--- f3)  El que ha ganado más puertos gana 3000€.
+-- f3)  El que ha llevado más veces algún mallot, gana 2000€.
     UPDATE ciclista
     SET premio = premio + 2000
     WHERE dorsal IN (
@@ -161,5 +161,33 @@ ADD COLUMN premio INTEGER
         ) AS inner_subquery
     )
 );
+
+
+
+-- f4) Gana 100 € por cada etapa que haya ganado.        
+UPDATE ciclista
+SET premio = premio + (100)
+WHERE dorsal = ANY(
+SELECT dorsal FROM etapa
+)
+
+SELECT ciclista.dorsal as cDorsal, etapa.dorsal as eDorsal FROM ciclista FULL OUTER JOIN etapa
+ON (ciclista.dorsal = etapa.dorsal)
+
+
+
+-- f5) Gana 500 € el que gane el puerto con mayor altura     
+UPDATE ciclista c1
+SET premio = premio + (100)
+
+SELECT * FROM ciclista
+WHERE dorsal = ANY(
+SELECT dorsal FROM etapa
+)
+
+--COMO HACERLO:
+--USAR UN ALIAS PARA PODER REFERENCIAR EL UPDATE EN UNA SUBQUERY EN SET
+UPDATE public.ciclista c0
+SET premio = premio + 100 * (SELECT count(*) FROM ciclista c1 WHERE c0.dorsal = c1.dorsal)
 
 

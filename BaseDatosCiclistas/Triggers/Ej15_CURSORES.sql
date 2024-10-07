@@ -25,9 +25,8 @@ END;
 $body$; 
 
 
- -- NO SE PUEDE USAR "CREATE OR REPLACE" PORQUE PETA
-CREATE TRIGGER tg_equipos_de_minimo_3_ciclistas
+CREATE TRIGGER tg_cursores_practica
     AFTER INSERT OR UPDATE
     ON public.equipo
     FOR EACH ROW
-    EXECUTE FUNCTION public.equipos_de_minimo_3_ciclistas();
+    EXECUTE FUNCTION public.cursores_practica();
