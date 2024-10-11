@@ -1,0 +1,69 @@
+-- 2 Crea una restricción que evite que se inserte un artista sin grupo.
+
+
+--INSERTO ARTISTA, DEBE TRIGGEREAR ANTES DE QUE SE INSERTE, 
+--UN INSERT DE GRUPO Y UN INSERT EN PERTENECE
+--SE DEBERÁ HACER EN UNA TRANSACCIÓN LOS INSERTS 
+
+/*
+    SI SE AFECTA AL ARTISTA O GRUPO CON UPDATE, TENER UN ON UPDATE CASCADE DE 
+    LA CLAVE PRIMARIA SERÍA LO PROPIO PARA QUE NO TENGAMOS PROBLEMAS DE INTEGRIDAD 
+    DE LOS DATOS EN LA RELACIÓN PERTENECE
+
+    PROCESOS AFECTADOS: 
+    AFTER INSERT ARTISTA, (Porque hace falta la transacción)
+    AFTER UPDATE, 
+    
+    BEFORE DELETE DE GRUPO, pero no se pide
+
+*/
+
+-- IF NOT EXISTS (SELECT dni FROM pertence WHERE dni = NEW.dni) ES MEJOR, más segura
+
+CREATE OR REPLACE FUNCTION no_permitir_artistas_sin_grupos() 
+RETURNS TRIGGER
+LANGUAGE 'plpgsql'
+COST 100
+VOLATILE NOT LEAKPROOF
+AS $body$
+BEGIN
+    IF NOT EXISTS (SELECT dni FROM pertence WHERE dni = NEW.dni) THEN
+        RAISE EXCEPTION 'NO SE PUEDE INSERTAR UN ARTISTA SIN GRUPO';
+        RETURN NULL;
+    ELSE
+        RETURN NEW;
+    END IF;
+
+END;
+$body$;
+
+
+
+
+CREATE CONSTRAINT TRIGGER tg_no_permitir_artistas_sin_grupos
+    AFTER INSERT
+    ON public.artista
+    DEFERRABLE INITIALLY DEFERRED
+    FOR EACH ROW
+    EXECUTE FUNCTION public.no_permitir_artistas_sin_grupos();
+
+
+
+--TRANSACCIÓN 
+BEGIN;
+-- Insert into Table A
+INSERT INTO artista VALUES ('233849384','PRUEBA');
+-- Insert into intermedia
+INSERT INTO pertence (dni,cod,funcion) VALUES ('233849384',1 ,'PRUEBA');
+
+
+COMMIT;
+
+ROLLBACK;
+
+
+
+
+
+
+
