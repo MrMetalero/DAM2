@@ -14,7 +14,7 @@ public class TareaCompleja implements Runnable {
         Thread hiloActual = Thread.currentThread();
         String miNombre = hiloActual.getName();
         contadorInterno.increase();
-        System.out.println("Finalizado el hilo " + miNombre + " Contador: " + contadorInterno.count);
+        System.out.println("Finalizado el hilo " + miNombre + " Contador: " + contadorInterno.getCount());
     }
 
 }
