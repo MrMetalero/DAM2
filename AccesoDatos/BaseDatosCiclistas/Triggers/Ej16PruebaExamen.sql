@@ -174,6 +174,11 @@ SELECT dorsal FROM etapa
 SELECT ciclista.dorsal as cDorsal, etapa.dorsal as eDorsal FROM ciclista FULL OUTER JOIN etapa
 ON (ciclista.dorsal = etapa.dorsal)
 
+--COMO HACERLO:
+--USAR UN ALIAS PARA PODER REFERENCIAR EL UPDATE EN UNA SUBQUERY EN SET
+UPDATE public.ciclista c0
+SET premio = premio + 100 * (SELECT count(*) FROM ciclista c1 WHERE c0.dorsal = c1.dorsal)
+
 
 
 -- f5) Gana 500 € el que gane el puerto con mayor altura     
@@ -184,10 +189,5 @@ SELECT * FROM ciclista
 WHERE dorsal = ANY(
 SELECT dorsal FROM etapa
 )
-
---COMO HACERLO:
---USAR UN ALIAS PARA PODER REFERENCIAR EL UPDATE EN UNA SUBQUERY EN SET
-UPDATE public.ciclista c0
-SET premio = premio + 100 * (SELECT count(*) FROM ciclista c1 WHERE c0.dorsal = c1.dorsal)
 
 
