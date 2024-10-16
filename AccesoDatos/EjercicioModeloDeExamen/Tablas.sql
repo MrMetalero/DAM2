@@ -1,4 +1,4 @@
--- Active: 1727983525436@@127.0.0.1@5432@inmobiliaria
+-- Active: 1726053967925@@127.0.0.1@5432@inmobiliaria
 CREATE DATABASE inmobiliaria
 
 CREATE TABLE clientes(
@@ -21,13 +21,13 @@ CREATE TABLE viviendas(
 CREATE TABLE casas(
     id_casa VARCHAR(255) PRIMARY KEY,
     localizacion_ciudad VARCHAR(255) NOT NULL,
-    CONSTRAINT fk_id_casa_apunta_id_vivienda FOREIGN KEY (id_casa) REFERENCES vivienda(id_vivienda)
+    CONSTRAINT fk_id_casa_apunta_id_vivienda FOREIGN KEY (id_casa) REFERENCES viviendas(id_vivienda)
 );
 
 CREATE TABLE chales(
     id_chale VARCHAR(255) PRIMARY KEY,
     precio_estimado FLOAT(9),
-    CONSTRAINT fk_id_chale_apunta_id_vivienda FOREIGN KEY (id_chale) REFERENCES vivienda(id_vivienda)
+    CONSTRAINT fk_id_chale_apunta_id_vivienda FOREIGN KEY (id_chale) REFERENCES viviendas(id_vivienda)
 );
 
 CREATE TABLE ventas(
