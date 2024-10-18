@@ -19,15 +19,15 @@ INSERT INTO viviendas (id_vivienda, direccion, m2) VALUES
 
 -- Insert test data into casas
 INSERT INTO casas (id_casa, localizacion_ciudad) VALUES
-('CASA-001', 'Madrid'),
-('CASA-002', 'Barcelona'),
-('CASA-003', 'Valencia');
+('VIV-001', 'Madrid'),
+('VIV-002', 'Barcelona');
+
 
 -- Insert test data into chales
 INSERT INTO chales (id_chale, precio_estimado) VALUES
-('CHALE-001', 250000.00),
-('CHALE-002', 300000.00),
-('CHALE-003', 450000.00);
+('VIV-003', 250000.00),
+('VIV-004', 300000.00);
+
 
 -- Insert test data into ventas
 INSERT INTO ventas (dni_cliente, id_vivienda, dni_empleado, precio_venta) VALUES

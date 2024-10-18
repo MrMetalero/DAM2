@@ -1,4 +1,5 @@
 
+
 CREATE OR REPLACE FUNCTION no_insertar_en_empleado_si_no_hay_venta_con_dniempleado()
 RETURNS TRIGGER
 LANGUAGE 'plpgsql'
@@ -28,20 +29,6 @@ CREATE CONSTRAINT TRIGGER no_insertar_en_empleado_si_no_hay_venta_con_dniemplead
     FOR EACH ROW
     EXECUTE FUNCTION public.no_insertar_en_empleado_si_no_hay_venta_con_dniempleado();
 
-
--- INTENTANDO INSERTAR UN EMPLEADO SIN VENTA
-INSERT INTO empleados (dni_empleado,nombre) VALUES('22222222B','EMPLEADO2');
-
---TRANSACCIÓN DE UNA VENTA CON UN EMPLEADO NUEVO CREADO cuando se inserta una venta
-BEGIN
-
-INSERT INTO empleados (dni_empleado,nombre) VALUES('11111111E','EMPLEADO');
-INSERT INTO ventas (dni_cliente,dni_empleado,id_vivienda,precio_venta) VALUES ('12345678A','11111111E','VIV-001',2344.43);
-
-END;
-
-
--- 12345678A	Juan Pérez	612345678
 
 
 
