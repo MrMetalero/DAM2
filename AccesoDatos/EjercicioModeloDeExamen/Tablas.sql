@@ -35,10 +35,9 @@ CREATE TABLE chales(
 
 CREATE TABLE ventas(
     dni_cliente VARCHAR(9) NOT NULL,
-    id_vivienda VARCHAR(9) NOT NULL,
+    id_vivienda VARCHAR(9) PRIMARY KEY,
     dni_empleado VARCHAR(9) NOT NULL,
     precio_venta FLOAT(9) NOT NULL,
-    CONSTRAINT pk_dni_cliente_id_vivienda PRIMARY KEY(id_vivienda),
     CONSTRAINT fk_dni_cliente_apunta_cliente FOREIGN KEY (dni_cliente) REFERENCES clientes(dni_cliente),
     CONSTRAINT fk_id_vivienda_apunta_vivienda FOREIGN KEY (id_vivienda) REFERENCES viviendas(id_vivienda),
     CONSTRAINT fk_id_empleado_apunta_empleado FOREIGN KEY (dni_empleado) REFERENCES empleados(dni_empleado)

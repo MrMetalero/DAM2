@@ -1,6 +1,6 @@
 
 
-CREATE OR REPLACE FUNCTION no_insertar_en_empleado_si_no_hay_venta_con_dniempleado()
+CREATE OR REPLACE FUNCTION no_vender_por_menos_de_precio()
 RETURNS TRIGGER
 LANGUAGE 'plpgsql'
 COST 100
@@ -13,7 +13,7 @@ BEGIN
     THEN 
         RETURN NEW;
     ELSE
-        RAISE EXCEPTION 'NO SE PUEDE INTRODUCIR ESTE EMPLEADO SIN UNA VENTA';
+        RAISE EXCEPTION 'NO SE PUEDE VENDER POR ESTE PRECIO';
         RETURN NULL;
     END IF;
 
