@@ -9,12 +9,12 @@ AS $body$
 DECLARE
 
 BEGIN
-    IF EXISTS (SELECT * FROM ventas WHERE dni_empleado = NEW.dni_empleado)
+    IF EXISTS (SELECT * FROM chales WHERE NEW.precio_venta < precio_estimado AND id_vivienda = NEW.id_vivienda)
     THEN 
-        RETURN NEW;
-    ELSE
-        RAISE EXCEPTION 'NO SE PUEDE VENDER POR ESTE PRECIO';
+        RAISE NOTICE 'NO SE PUEDE VENDER POR ESTE PRECIO';
         RETURN NULL;
+    ELSE
+        RETURN NEW;
     END IF;
 
 END;
@@ -22,14 +22,11 @@ $body$;
 
 
 
-CREATE CONSTRAINT TRIGGER no_insertar_en_empleado_si_no_hay_venta_con_dniempleado
-    AFTER INSERT OR UPDATE
-    ON public.empleados
-    DEFERRABLE INITIALLY DEFERRED
+CREATE TRIGGER tg_no_vender_por_menos_de_precio
+    BEFORE INSERT OR UPDATE
+    ON public.ventas
     FOR EACH ROW
-    EXECUTE FUNCTION public.no_insertar_en_empleado_si_no_hay_venta_con_dniempleado();
-
-
+    EXECUTE FUNCTION public.no_vender_por_menos_de_precio();
 
 
 

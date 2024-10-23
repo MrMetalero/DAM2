@@ -35,8 +35,8 @@ INSERT INTO empleados (dni_empleado,nombre) VALUES('22222222B','EMPLEADO2');
 --TRANSACCIÓN DE UNA VENTA CON UN EMPLEADO NUEVO CREADO cuando se inserta una venta
 BEGIN
 
-INSERT INTO empleados (dni_empleado,nombre) VALUES('11111111E','EMPLEADO');
-INSERT INTO ventas (dni_cliente,dni_empleado,id_vivienda,precio_venta) VALUES ('12345678A','11111111E','VIV-001',2344.43);
+INSERT INTO empleados (dni_empleado,nombre) VALUES('33333333E','EMPLEADO3');
+INSERT INTO ventas (dni_cliente,dni_empleado,id_vivienda,precio_venta) VALUES ('34567890C','33333333E','VIV-003',2344.43);
 
 END;
 

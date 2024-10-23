@@ -31,7 +31,4 @@ INSERT INTO chales (id_chale, precio_estimado) VALUES
 
 -- Insert test data into ventas
 INSERT INTO ventas (dni_cliente, id_vivienda, dni_empleado, precio_venta) VALUES
-('12345678A', 'VIV-001', '98765432A', 200000.00),
-('23456789B', 'VIV-002', '87654321B', 350000.00),
-('34567890C', 'VIV-003', '76543210C', 280000.00),
 ('45678901D', 'VIV-004', '98765432A', 180000.00);
