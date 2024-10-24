@@ -1,99 +1,41 @@
 import java.util.Random;
 
 public class Filosofo implements Runnable {
-    public void run() {
-        String miNombre = Thread.currentThread().getName();
+    int ultimaPosicion = App.listaFiloPalillos.size()-1; // No es el tamaño exactamente. Para abreviar size-1
+    int indiceIzq;
+    int indiceDer;
+    Palillo palilloIzqTemp;
+    Palillo palilloDerTemp;
+    Random generador = new Random();
+    String miNombre;
 
+    @Override
+    public void run() {
+        miNombre = Thread.currentThread().getName();
         System.out.println("Spawneando Filosofo: " + miNombre);
-        Random generador = new Random();
+        
         while (true) {
             /* Comer */
             // Intentar coger palillos
-            //Accedo a los palillos , cambio su valor ocupado
-            synchronized(this){
-                //System.out.println(App.listaFiloPalillos.toString().toUpperCase() + "\n\n");
+            //USA EL INDICE DEL FILÓSOFO PARA PASARLO A LA FUNCIÓN
+            try {
+                filoLogicaPalillo(App.listaFiloPalillos.indexOf(this));
+            } catch (Exception e) {
+               e.printStackTrace();
             }
             
-            try {
-                Object objetoComprobar = App.listaFiloPalillos.get(App.listaFiloPalillos.indexOf(this));
-               
-                //SI ES EL ÚLTIMO ELEMENTO DEL ARRAY
-                if (App.listaFiloPalillos.indexOf(this) == App.listaFiloPalillos.size()-1 && objetoComprobar.getClass().getSimpleName().contains("Filosofo") && App.listaFiloPalillos.indexOf(this) != 0 ) {
-                    Palillo izqPalillo = (Palillo) App.listaFiloPalillos.get(App.listaFiloPalillos.indexOf(this)-1);
-                    izqPalillo.ocuparPalillo(); //Ocupando 1
-                    Palillo derPalillo = (Palillo) App.listaFiloPalillos.get(App.listaFiloPalillos.indexOf(0));
-                    derPalillo.ocuparPalillo(); //Ocupando 2
-        
+            System.out.println("\n"+miNombre + " pensando...");
+            esperarTiempoAzar(miNombre, (1 + generador.nextInt(5)) * 1000);
+           
 
-                    //Los reemplazo por los objetos modificados 
-                    App.listaFiloPalillos.set(App.listaFiloPalillos.indexOf(this)-1,izqPalillo);
-                    App.listaFiloPalillos.set(App.listaFiloPalillos.indexOf(0),derPalillo);
-                   
-                    System.out.println(miNombre + " comiendo...");
-                    esperarTiempoAzar(miNombre, (1 + generador.nextInt(5)) * 1000);
-        
-
-                }else if(objetoComprobar.getClass().getSimpleName().contains("Filosofo") && App.listaFiloPalillos.indexOf(this) != 0 ){
-                    Palillo izqPalillo = (Palillo) App.listaFiloPalillos.get(App.listaFiloPalillos.indexOf(this)-1);
-                    izqPalillo.ocuparPalillo();
-                    Palillo derPalillo = (Palillo) App.listaFiloPalillos.get(App.listaFiloPalillos.indexOf(this)+1);
-                    derPalillo.ocuparPalillo();
-        
-
-                    //Los reemplazo por los objetos modificados 
-                    App.listaFiloPalillos.set(App.listaFiloPalillos.indexOf(this)-1,izqPalillo);
-                    App.listaFiloPalillos.set(App.listaFiloPalillos.indexOf(this)+1,izqPalillo);
-                    
-                    System.out.println(miNombre + " comiendo...");
-                    esperarTiempoAzar(miNombre, (1 + generador.nextInt(5)) * 1000);
-        
-                }
-            } catch (Exception e) {
-            e.printStackTrace();
-                
-            }
-
-
+           
           
 
             //PARA SOLTAR LOS PALILLOS
 
-            try {
-                Object objetoComprobar = App.listaFiloPalillos.get(App.listaFiloPalillos.indexOf(this));
-                
-                //SI ES EL ÚLTIMO ELEMENTO DEL ARRAY
-                if (App.listaFiloPalillos.indexOf(this) == App.listaFiloPalillos.size()-1 && objetoComprobar.getClass().getSimpleName().contains("Filosofo") && App.listaFiloPalillos.indexOf(this) != 0 ) {
-                    Palillo izqPalillo = (Palillo) App.listaFiloPalillos.get(App.listaFiloPalillos.indexOf(this)-1);
-                    izqPalillo.soltarPalillo(); //Ocupando 1
-                    Palillo derPalillo = (Palillo) App.listaFiloPalillos.get(App.listaFiloPalillos.indexOf(0));
-                    derPalillo.soltarPalillo(); //Ocupando 2
-        
-
-                    //Los reemplazo por los objetos modificados 
-                    App.listaFiloPalillos.set(App.listaFiloPalillos.indexOf(this)-1,izqPalillo);
-                    App.listaFiloPalillos.set(App.listaFiloPalillos.indexOf(0),derPalillo);
-                   
-
-                }else if(objetoComprobar.getClass().getSimpleName().contains("Filosofo") && App.listaFiloPalillos.indexOf(this) != 0 ){
-                    Palillo izqPalillo = (Palillo) App.listaFiloPalillos.get(App.listaFiloPalillos.indexOf(this)-1);
-                    izqPalillo.soltarPalillo();
-                    Palillo derPalillo = (Palillo) App.listaFiloPalillos.get(App.listaFiloPalillos.indexOf(this)+1);
-                    derPalillo.soltarPalillo();
-        
-
-                    //Los reemplazo por los objetos modificados 
-                    App.listaFiloPalillos.set(App.listaFiloPalillos.indexOf(this)-1,izqPalillo);
-                    App.listaFiloPalillos.set(App.listaFiloPalillos.indexOf(this)+1,izqPalillo);
-                    
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
             /* Pensando... */
             // Recordemos soltar los palillos
-            System.out.println(miNombre + " pensando...");
-            esperarTiempoAzar(miNombre, (1 + generador.nextInt(5)) * 1000);
+            
         }
     }
 
@@ -105,4 +47,72 @@ public class Filosofo implements Runnable {
             return;
         }
     }
+
+
+
+    private synchronized void filoLogicaPalillo(int indiceFilosofo)throws Exception{
+        
+       
+        if (indiceFilosofo > 0 && indiceFilosofo < ultimaPosicion) {
+            indiceIzq = App.listaFiloPalillos.indexOf(this) - 1;
+            indiceDer = App.listaFiloPalillos.indexOf(this) + 1;
+
+
+            
+
+            ocuparPalillos();
+
+            System.out.println("\n"+miNombre + " Comiendo...");
+            esperarTiempoAzar(miNombre, (1 + generador.nextInt(5)) * 1000);
+
+            filoDesocupaPalillo();
+          
+
+
+
+        }else if (indiceFilosofo == ultimaPosicion) {
+            indiceIzq = App.listaFiloPalillos.indexOf(this) -1;
+            indiceDer = 0;
+
+            ocuparPalillos();
+            esperarTiempoAzar(miNombre, (1 + generador.nextInt(5)) * 1000);
+
+            filoDesocupaPalillo();
+
+        }else if (indiceFilosofo == 0) {
+            throw new Exception("No se puede tener un filósofo en indice 0");
+            
+        }
+        
+    
+        
+    }
+
+    private void ocuparPalillos(){
+
+        if (palilloIzqTemp.ocupado == false && palilloDerTemp.ocupado == false) {
+            palilloIzqTemp = (Palillo) App.listaFiloPalillos.get(indiceIzq);
+            palilloDerTemp = (Palillo) App.listaFiloPalillos.get(indiceDer);
+            palilloIzqTemp.ocuparPalillo();
+            palilloDerTemp.ocuparPalillo();
+            App.listaFiloPalillos.set(indiceIzq, palilloIzqTemp);
+            App.listaFiloPalillos.set(indiceDer, palilloDerTemp);
+        }
+
+    }
+
+
+    private void filoDesocupaPalillo(){
+
+        palilloIzqTemp.soltarPalillo();
+        palilloDerTemp.soltarPalillo();
+        App.listaFiloPalillos.set(indiceIzq, palilloIzqTemp);
+        App.listaFiloPalillos.set(indiceDer, palilloDerTemp);
+        
+
+            
+    }
+
+
+
 }

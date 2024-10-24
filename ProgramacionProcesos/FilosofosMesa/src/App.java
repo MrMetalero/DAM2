@@ -15,10 +15,15 @@ public class App {
             Filosofo nuevoFilo = new Filosofo();
             System.out.println("Creando pares...");
             listaFiloPalillos.add(new Palillo());
-            Thread crearHiloFilo = new Thread(nuevoFilo);
             listaFiloPalillos.add(nuevoFilo);
+            Thread crearHiloFilo = new Thread(nuevoFilo);
             crearHiloFilo.start();
+           
+           
         }
+
+
+        System.out.println(listaFiloPalillos.toString()); 
 
     }
 

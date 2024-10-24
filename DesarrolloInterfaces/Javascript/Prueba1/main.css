@@ -1,0 +1,19 @@
+
+
+.container {
+    width: 500;
+    height: 500;
+    margin: 50px;
+ 
+    display: flex;
+    justify-content: center;
+  }
+  
+  #carta1 {
+    width: 500px;
+    height: 500px;
+
+    background-color: black;
+  }
+  
+

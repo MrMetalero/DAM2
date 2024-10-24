@@ -1,8 +1,0 @@
-
-
-function lanzarAlertaBoton() {
-    alert("HOLA")
-
-
-}
-

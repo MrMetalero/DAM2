@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Ejercicios DOM javascript nivel 1</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <script src='Ejercicio1.js'></script>
+</head>
+<body>
+    
+    <div id="div1" onclick="cambiarFondoDiv()" >
+        *Esto es un div, haz click*
+
+        <br/> 
+        <br/>
+    </div>
+   
+
+    <p id="p1" onclick="cambiarParrafo()">Párrafo sin modificar</p>
+
+    <p id="p2">Párrafo sin ocultar</p>
+
+    <button id="button1" onclick="ocultarParrafo()">
+        Ocultar parrafo p1
+    </button>
+    <br>
+
+        <button id="button2" onclick="crearParrafo()">
+            Añadir elemento de lista
+        </button>
+  
+        <button id="button3" onclick="eliminarElemento()">
+            Eliminar elemento de lista
+        </button>
+
+
+
+    <h2 >Lista para borrar y Añadir</h2>
+    <ul id="listaModificable">
+        <li>Elemento 1 lista</li>
+        <li>Elemento 2 lista</li>
+        <li>Elemento 3 lista</li>
+    </ul>
+
+
+</body>
+</html>
+
+
