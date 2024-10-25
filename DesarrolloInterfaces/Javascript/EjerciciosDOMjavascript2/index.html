@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+
+    <!-- 6. Contar los elementos de una lista
+    - Descripción: Crea un botón que cuente el número de elementos de una lista y lo muestre en un párrafo.
+     -->
+ 
+
+    <button onclick="contarLista()">
+        <label for="button">Contar elementos de la lista</label>
+    </button>
+
+    <ul id="lista1">
+        <li>Item1</li>
+        <li>Item2</li>
+        <li>Item3</li>
+        <li>Item4</li>
+    </ul>
+
+    <p id="resultadoLista1"></p>
+
+
+    <!-- 7. Cambiar una imagen al hacer clic
+    - Descripción: Crea una imagen que cambie al hacer clic sobre ella.
+     -->
+ 
+
+    <img id="imagen1" onclick="cambiarImagen()" src="img/Black_lotus.jpg" alt="black_lotus">
+
+
+    <!-- 8. Validar un campo de texto
+    - Descripción: Crea un formulario con un campo de texto que muestre un mensaje de error si está vacío al hacer clic en un botón.
+    -->
+ 
+
+    <form action="">
+        <label for="cajaTexto1">Nombre</label><br/>
+        <input id="cajaTexto1" type = "text"><br/>
+        <input onclick="comprobarVacio()" id="botonEnviarForm1" type="submit" value="Enviar">
+    </form>
+
+
+    <br/>
+    <br/>
+
+     <!-- 9. Cambiar el tamaño de un div con botones
+    - Descripción: Crea dos botones, uno para aumentar y otro para reducir el tamaño de un `div`.
+    -->
+
+    <button onclick="cambiarDivSizeAumentar()" id="buttonDiv1">Aumentar Div</button>
+
+    <button onclick="cambiarDivSizeReducir()" id="buttonDiv2">Reducir Div</button>
+      
+    
+   
+
+    <div id="divModificable" style="background-color: aqua; min-height: 100px;">
+        <p>Este es el div redimensionable</p>
+    </div>
+
+
+
+ <!-- 10. Crear un reloj simple
+ - Descripción: Crea un reloj que muestre la hora actual y se actualice cada segundo. -->
+
+    <p onclick="darHora()" id="parrafoHora" style="color: red; font-weight: bold;">
+        HOLA
+    </p>
+
+
+
+
+
+
+    
+</body>
+</html>

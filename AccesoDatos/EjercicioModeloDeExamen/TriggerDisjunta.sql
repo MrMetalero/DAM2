@@ -1,4 +1,9 @@
 
+-- TENGO QUE SEPARAR EL INSERT DE DISJUNTA, ASÍ ESTÁ MAL
+
+
+
+
 --CASA
 --
 --

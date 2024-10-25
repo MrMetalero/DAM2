@@ -12,21 +12,21 @@ INSERT INTO empleados (dni_empleado, nombre, telefono) VALUES
 
 -- Insert test data into viviendas
 INSERT INTO viviendas (id_vivienda, direccion, m2) VALUES
-('VIV-001', 'Calle Falsa 123, Madrid', 80.5),
-('VIV-002', 'Avenida Siempre Viva 456, Barcelona', 120.0),
-('VIV-003', 'Plaza Mayor 789, Valencia', 95.0),
-('VIV-004', 'Camino del Sol 101, Sevilla', 70.0);
+('VIV-005', 'Calle Falsa 123, Madrid', 80.5),
+('VIV-006', 'Avenida Siempre Viva 456, Barcelona', 120.0),
+('VIV-007', 'Plaza Mayor 789, Valencia', 95.0),
+('VIV-008', 'Camino del Sol 101, Sevilla', 70.0);
 
 -- Insert test data into casas
 INSERT INTO casas (id_casa, localizacion_ciudad) VALUES
-('VIV-001', 'Madrid'),
-('VIV-002', 'Barcelona');
+('VIV-005', 'Madrid'),
+('VIV-006', 'Barcelona');
 
 
 -- Insert test data into chales
 INSERT INTO chales (id_chale, precio_estimado) VALUES
-('VIV-003', 250000.00),
-('VIV-004', 300000.00);
+('VIV-007', 250000.00),
+('VIV-008', 300000.00);
 
 
 -- Insert test data into ventas

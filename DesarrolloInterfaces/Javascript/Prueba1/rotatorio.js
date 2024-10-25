@@ -1,12 +1,12 @@
 
-
+document.getElementsById("header1").style.backgroundcolor = "black"
+document.getElementsById("carta1")
 function giraGira() {
-    document.getElementsById("header1")
+   
     while (true) {
-        document.getElementsById("carta1")
+        
         
     }
-   
 
 }
 
