@@ -1,0 +1,59 @@
+
+
+participantes (id_participante:string(9), pertenece_a_equipo:varchar(5), apellidos:string(25), dorsal:string(4), nombre:string(25), fecha_nacimiento:date ){
+CP: id_participante
+VNN:  nombre
+VNN: apellidos
+VNN: pertenece_a_equipo
+VNN: dorsal
+Caj:  pertenece_a_equipo → equipo(id_equipo)
+}
+
+
+
+equipos(id_equipo:string(9), nombre_equipo:string(25), marca:string(25), nacionalidad:string(50), presupuesto:doubleprecision(10) ){
+CP: id_equipo
+VNN:  nombre_equipo
+VNN: marca
+VNN: nacionalidad
+VNN: presupuesto
+
+}
+
+
+
+ganadores_etapas(id_participante:string(9), numero_etapa:int(5), tiempo:doubleprecision(5) ){
+CP: id_participante, numero_etapa
+VNN: tiempo
+Caj: id_participante → participantes(id_participantes)
+Caj: id_etapa → etapa(numero_etapa)
+}
+
+
+
+etapas (numero_etapa:string(5), origen:string(20), destino:string(20), distancia:int(6) ){
+CP: numero_etapa
+VNN: tiempo
+VNN: origen
+VNN: destino
+VNN: distancia
+}
+
+
+
+
+mountain_etapas(id_etapa:string(5), pendiente:int(5) ){
+CP: numero_etapa
+VNN: pendiente
+}
+
+
+puertos(id_puerto:string(5), nombre_puerto:string(25), id_mountain_etapa:int(5) ){
+CP: id_puerto
+VNN: nombre_puerto
+VNN: id_mountain_etapa
+Caj: id_mountain_etapa → mountain_etapas(id_etapa)
+}
+
+
+
