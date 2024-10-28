@@ -45,13 +45,15 @@ function cambiarDivSizeReducir() {
 // 10. Crear un reloj simple
 // - Descripción: Crea un reloj que muestre la hora actual y se actualice cada segundo.
 
+setInterval("crearReloj()",1000)
 
-function darHora() {
-    document.getElementById("parrafoHora").textContent = String(Date.now) 
 
+function crearReloj() {
+    
+   document.getElementById("parrafoHora").textContent = String( new Date().toLocaleTimeString())
 }
-
-
+    
+    
 
 
 
