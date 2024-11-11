@@ -17,15 +17,16 @@ public class Jugador implements Runnable {
     public void run() {
         switch (tipoApuesta) {
             case "Singular":
-                
+                System.out.println("Apostando Singular...");
             break;
 
             case "Par/Impar":
-            
+                System.out.println("Apostando Par/Impar...");
+
             break;
         
             case "Martingala":
-                
+                System.out.println("Apostando Martingala...");
             break;
 
 
