@@ -1,3 +1,5 @@
+import java.util.concurrent.BrokenBarrierException;
+
 public class Jugador implements Runnable {
     Integer cantidadDinero = 1000;
     Boolean apostando = false;  
@@ -15,6 +17,14 @@ public class Jugador implements Runnable {
 
     @Override
     public void run() {
+
+        try {
+            LanzaHilos.newBarrier.await();
+        } catch (InterruptedException | BrokenBarrierException e) {
+            e.printStackTrace();
+        }
+
+
         switch (tipoApuesta) {
             case "Singular":
                 System.out.println("Apostando Singular...");

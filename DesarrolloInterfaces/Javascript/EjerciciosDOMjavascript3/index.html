@@ -5,32 +5,91 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script>
-</head>
-<body>
-
-
-
-
-    <button onclick="cambiarDivSizeAumentar()" id="buttonDiv1">Cambiar Textos</button>
-
-      
     
-   <div id="listaParrafos">
+    <script src='scripts/main.js'></script>
+</head>
+<body onload="eliminarElementoListaBox1()">
 
-    <p class="pModificable" style="background-color: aqua; min-height: 100px;">
-       Contenido del p
-    </p>
 
-    <p class="pModificable" style="background-color: aqua; min-height: 100px;">
+    <!-- // 1. Modificar el contenido de varios párrafos dinámicamente
+    // - Descripción: Crea un botón que cambie el contenido de todos los párrafos de la página al hacer clic.
+    -->
+    
+    
+    <button onclick="cambiarContenidoParrafo()" id="buttonDiv1">Cambiar Textos</button>
+
+    <div id="listaParrafos">
+        <p class="pModificable" style="background-color: aqua; min-height: 100px;">
+           Contenido del p
+        </p>
+    
+        <p class="pModificable" style="background-color: aqua; min-height: 100px;">
+            Contenido del p
+        </p>
+    
+        <p class="pModificable" style="background-color: aqua; min-height: 100px;">
         Contenido del p
-    </p>
+        </p>
+    </div>
 
-    <p class="pModificable" style="background-color: aqua; min-height: 100px;">
-    Contenido del p
+
+
+    <!-- 2. Cambiar el color de fondo de un div de forma alternada
+    - Descripción: Crea un botón que cambie el color de fondo de un `div` alternando entre dos colores.
+    -->
+
+    <button onclick="cambiarColorDiv()">Cambiar Color DIV</button>
+
+    <div style="width: 150px; height: 100px; background-color: brown; border-radius: 30px;" id="divColor" >
+        <p style="text-align: center; color: aliceblue;">DIV CAMBIACOLOR</p>
+
+
+    </div>
+
+    <!-- 3. Mostrar y ocultar un elemento con transición
+    - Descripción: Crea un botón que oculte o muestre un párrafo con una transición suave al cambiar la opacidad.
+    -->
+
+    <br/>
+    <br/>
+  <button onclick="transicionDiv()">TRANSICIÓN DIV</button>
+
+    <div style="width: 150px; height: 100px; background-color: brown; border-radius: 30px;" id="divOpacidad" >
+        <p style="text-align: center; color: aliceblue; padding-top: 10px ;">TRANSICIÓN DIV</p>
+
+
+    </div>
+
+
+
+
+    <!-- 4. Añadir un nuevo elemento a la lista con contenido personalizado
+    - Descripción: Crea un campo de texto y un botón que permita al usuario añadir un nuevo elemento a la lista con el texto que ha introducido.
+    -->
+
+    
+    <br/>
+    <br/>
+    <p>
+        Escribe una palabra y pulsa el botón para AÑADIRLO a la lista.
+        <br/>
+        También puedes BORRAR un elemento haciendo CLICK encima
     </p>
-   
+    <label for="textBox1"></label>
+    <input id="textBox1" type="text"/>
+    <br/>
+    <input onclick="crearElementoListaBox1()" type="submit" value="Enviar texto a la lista" id="submitTextBox1">
+
+     <!-- 5. Eliminar un elemento específico de la lista
+     - Descripción: Crea un botón que permita eliminar un elemento específico de una lista al hacer clic en él.
+     -->
+
+    <ul id="listaElementos">
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+        <li>Elemento 4</li>
+    </ul>
 
 
 
