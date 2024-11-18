@@ -1,4 +1,4 @@
-///references
+
 
 // 1. Sistema de Puntuación Dinámico
 
@@ -6,16 +6,41 @@
 
 //    - Objetivo: Trabajar con eventos de clic y manipulación del DOM para actualizar la interfaz en tiempo real.
 
- 
+ function hoverElementos() {  
 
- $("#listaPelis").hover(function () {
-    $("#listaPelis").css("color", "blue")
+
+
+    $("#listaPelis").children("li").children("img").hover(function(){
+        
+
+        $(this).prevAll().addBack().attr("src", "img/starRatingLit.png")
+
+        
     
-    }
- );
+        },
+        function(){
+            
+            $(this).prevAll().addBack().attr("src", "img/starRating.png")
+        }
+
+    
+    )
+
+   
+        
+    
+
+ };
 
 
-$(".prueba").html("HOLA");
+ function  contarElementos(objetoEntrada){
+    var longitud = $(objetoEntrada).length
+    
+    return longitud
+ }
+
+
+
 
 
 
