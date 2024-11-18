@@ -14,9 +14,11 @@ public class UserController {
     @GetMapping("/models")
     public String mostrar(Map<String,Object> model){
         User user = new User("Daniel","Mena");
+        user.setEmail("danymena@gmail");
 
         model.put("title","Título");
         model.put("user", user);
+        
         return "details";
     }
 
