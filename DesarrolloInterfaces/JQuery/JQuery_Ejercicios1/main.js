@@ -1,4 +1,4 @@
-
+///references
 
 // 1. Sistema de Puntuación Dinámico
 
@@ -8,8 +8,14 @@
 
  
 
+ $("#listaPelis").hover(function () {
+    $("#listaPelis").css("color", "blue")
+    
+    }
+ );
 
 
+$(".prueba").html("HOLA");
 
 
 
