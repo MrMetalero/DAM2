@@ -19,15 +19,22 @@
     
         },
         function(){
-            
-            $(this).prevAll().addBack().attr("src", "img/starRating.png")
+            if (!$(this).hasClass('locked')) {  
+                $(this).prevAll().addBack().attr("src", "img/starRating.png");
+            }
         }
 
     
     )
 
    
-        
+    $("#listaPelis").children("li").children("img").click(function() {
+        // Mark clicked star and all previous stars as "locked"
+        $(this).prevAll().addBack().addClass('locked').attr("src", "img/starRatingLit.png");
+
+        // Mark the other stars as "unlocked" and reset their appearance
+        $(this).nextAll().removeClass('locked').attr("src", "img/starRating.png");
+    });
     
 
  };
