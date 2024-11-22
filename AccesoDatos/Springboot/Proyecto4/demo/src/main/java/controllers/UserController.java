@@ -18,7 +18,7 @@ public class UserController {
 
         model.put("title","Título");
         model.put("user", user);
-        
+
         return "details";
     }
 

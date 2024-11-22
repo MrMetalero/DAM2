@@ -6,21 +6,47 @@
 
 //    - Objetivo: Trabajar con eventos de clic y manipulación del DOM para actualizar la interfaz en tiempo real.
 
+$(document).ready(function() {
+    // Iterate over each <li> inside #listaPelis
+    $("#listaPelis li").each(function() {
+        // Find all <img> tags inside each <li> and set the 'bloqueada' attribute
+        $(this).find("img").attr("bloqueada", "false");
+    });
+});
+
  function hoverElementos() {  
 
-    
+   
 
     $("#listaPelis").children("li").children("img").hover(function(){
+            $(this).prevAll().addBack().attr("src", "img/starRatingLit.png")
         
 
-        $(this).prevAll().addBack().attr("src", "img/starRatingLit.png")
-
-        
-    
-        },
-        function(){
+        if ($(this).attr("bloqueada") == "true") {
             
-            $(this).prevAll().addBack().attr("src", "img/starRating.png")
+
+        } else {
+            $(this).click(function() { 
+                $(this).prevAll().addBack().attr("bloqueada","true")
+                $(this).prevAll().addBack().attr("src", "img/starRatingLit.png")
+    
+            });
+            
+
+        }
+
+       
+    
+        }, //SI DEJAS DE HACER HOVER O NO SE ESTÁ HACIENDO HOVER
+        function(){
+            if ($(this).attr("bloqueada") == "true"){
+
+            }else{
+                if ($(this).attr("bloqueada") == "false")
+                $(this).prevAll().addBack().attr("src", "img/starRating.png")
+            }
+
+            
         }
 
     
@@ -57,6 +83,8 @@
 //    - Objetivo: Practicar la manipulación de datos y la actualización del DOM en un contexto de simulación de e-commerce.
 
  
+
+
 
 
 

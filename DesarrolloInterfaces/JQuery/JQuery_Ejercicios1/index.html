@@ -11,6 +11,24 @@
 </head>
 <body>
 
+  <style>
+    table{
+      border-radius: 5px;
+      background-color: rgb(247, 247, 239);
+    }
+
+   table, th,td{
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    border: 2px solid black;
+   }
+
+   td{
+    padding: 5px;
+   }
+
+  </style>
 
 
     <!-- 1. Sistema de Puntuación Dinámico
@@ -31,38 +49,38 @@
     <ul  onmouseover="hoverElementos()" id="listaPelis" style="background-color: aqua;">
         <li>Peli 1 
         
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false"  src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
 
         </li>
         <li>Peli 2 
         
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
 
         </li>
         <li>Peli 3 
         
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
 
         </li>
         <li>Peli 4 
         
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
-          <img src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
+          <img bloqueada="false" src="img/starRating.png" alt="Star" height="20px">
 
         </li>
     </ul>
@@ -88,7 +106,39 @@
   -->
   
  
+  <h3>Carrito de Compras</h3>
 
+    <table>
+      <thead>Productos de Magic</thead>
+      <tr>
+        <th style="min-width: 150px;">Nombre</th>
+        <th style="min-width: 80px;">Coste</th>
+        <th> Añadir al carrito</th>
+      </tr>
+
+      <!-- Fila1 Nombres-->
+      <tr>
+        <td>Jayce Beleren</td>
+        <td>0.5</td>
+        <td><button>Añadir</button></td>
+      </tr>
+
+      <!-- Fila2 Coste -->
+      <tr>
+        <td>Vraska Relic Seeker</td>
+        <td>0.5</td>
+        <td><button>Añadir</button></td>
+      </tr>
+
+
+      <!-- Fila3 Añadir al carrito -->
+      <tr>
+        <td>Liliana Death's Majesty</td>
+        <td>0.5</td>
+        <td><button>Añadir</button></td>
+      </tr>
+
+    </table>
 
 
 
