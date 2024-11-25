@@ -1,4 +1,4 @@
-package controllers;
+package com.example.demo.controllers;
 
 import java.util.Map;
 
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import models.User;
+import com.example.demo.models.User;
 
 @Controller
 public class UserController {

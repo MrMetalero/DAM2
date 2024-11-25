@@ -1,4 +1,6 @@
-package models.dto;
+package com.example.demo.models.dto;
+
+import org.springframework.web.bind.annotation.GetMapping;
 
 public class UserDto {
     

@@ -6,13 +6,7 @@
 
 //    - Objetivo: Trabajar con eventos de clic y manipulación del DOM para actualizar la interfaz en tiempo real.
 
-$(document).ready(function() {
-    // Iterate over each <li> inside #listaPelis
-    $("#listaPelis li").each(function() {
-        // Find all <img> tags inside each <li> and set the 'bloqueada' attribute
-        $(this).find("img").attr("bloqueada", "false");
-    });
-});
+
 
  function hoverElementos() {  
 
@@ -82,12 +76,81 @@ $(document).ready(function() {
 
 //    - Objetivo: Practicar la manipulación de datos y la actualización del DOM en un contexto de simulación de e-commerce.
 
- 
 
 
 
+function addElementoCarrito() {
+
+   $("#tablaProductos").children("tr").children("td").children("button").on("click",function () { 
+    
+    var fila = $(this).closest('tr');
+    var nombreProducto = fila.find('td').eq(0).text();  // El primer <td> contiene el nombre
+    var precioProducto = parseFloat(fila.find('td').eq(1).text());  // El segundo <td> contiene el precio
+    
+
+    $("#tablaCarrito").append(
+        "<tr>" + 
+            "<td>" + nombreProducto + "</td>" +
+            "<td>" + precioProducto + "</td>" +
+            "<td><button class='remove-btn'>Remove</button></td>" +
+         "</tr>"
+          
+    );
+        
+    $("#tablaCarrito").children("tr").children("td").children("button")
+        $(selector).remove();
+    });
+
+    if ($('#tablaCarrito"').children("tr").children("td").text().trim() !== '') {
+        $(this).append("<p> </p>")
+    }
+
+    
+    
+}
 
 
+$(document).ready(function() {
+    // Event delegation to bind click event to dynamically added buttons
+    $("#tablaProductos").on("click", "button", function() {
+        var fila = $(this).closest('tr');  // Get the closest <tr> that contains the clicked button
+        var nombreProducto = fila.find('td').eq(0).text();  // Extract product name from the first <td>
+        var precioProducto = parseFloat(fila.find('td').eq(1).text());  // Extract price from the second <td>
+        
+       //Para comprobar si se encuentra ya el elemento clicado en el carrito
+       //Itera entre todos los tr del carrito y saca su texto del primer elemento para compararlo
+        var productoEncontrado = false;
+        $("#tablaCarrito tr").each(function() {
+            var nombreProductoCarrito = $(this).find('td').eq(0).text();  // Get the product name from the cart
+            if (nombreProductoCarrito === nombreProducto) {
+                productoEncontrado = true;  // True es que si lo ha encontrado
+                return true;  
+            }
+        });
+
+        if (productoEncontrado) {
+            $("#tablaCarrito").children("tr").
+
+        } else {
+            $("#tablaCarrito").append(
+                "<tr>" +
+                    "<td>" + nombreProducto + "</td>" +
+                    "<td>" + precioProducto + "</td>" +
+                    "<td>0</td>" +
+                    "<td><button class='remove-btn'>Eliminar</button></td>" +
+                "</tr>"
+            );
+        }
+            
+        
+
+    });
+
+    // Event handler to remove item from the cart when "Eliminar" is clicked
+    $("#tablaCarrito").on("click", ".remove-btn", function() {
+        $(this).closest('tr').remove();  // Remove the row containing the clicked button
+    });
+});
 
 
 

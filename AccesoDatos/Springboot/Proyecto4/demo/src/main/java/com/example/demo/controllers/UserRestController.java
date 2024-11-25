@@ -1,11 +1,11 @@
-package controllers;
+package com.example.demo.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import models.User;
-import models.dto.UserDto;
+import com.example.demo.models.User;
+import com.example.demo.models.dto.UserDto;
 
 @RestController
 @RequestMapping("/api")

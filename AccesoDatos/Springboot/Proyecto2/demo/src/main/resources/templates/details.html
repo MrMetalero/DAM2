@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio2Completo</title>
+</head>
+<body>
+    
+    <h1>Tabla de usuarios</h1>
+    <table style="border: 1px solid black;">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+            </tr>
+        </thead>
+        <tbody style="border: 1px solid black ;">
+            <!-- Iterate over the usuarios list -->
+            <tr style="border: 1px solid black ;" th:each="User:${usuarios}">
+                <td style="border: 1px solid black ;" th:text="${User.name}"></td>  <!-- Display the user's name -->
+                <td style="border: 1px solid black ;" th:text="${User.lastname}"></td>  <!-- Display the user's lastname -->
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

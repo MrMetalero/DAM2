@@ -5,10 +5,9 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src='main.js'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-</head>
+  </head>
 <body>
 
   <style>
@@ -106,9 +105,9 @@
   -->
   
  
-  <h3>Carrito de Compras</h3>
+  <h2>Carrito de Compras</h2>
 
-    <table>
+    <table id="tablaProductos">
       <thead>Productos de Magic</thead>
       <tr>
         <th style="min-width: 150px;">Nombre</th>
@@ -116,14 +115,14 @@
         <th> Añadir al carrito</th>
       </tr>
 
-      <!-- Fila1 Nombres-->
+      <!-- Productos-->
       <tr>
-        <td>Jayce Beleren</td>
+        <td>Jace Beleren</td>
         <td>0.5</td>
         <td><button>Añadir</button></td>
       </tr>
 
-      <!-- Fila2 Coste -->
+     
       <tr>
         <td>Vraska Relic Seeker</td>
         <td>0.5</td>
@@ -131,16 +130,38 @@
       </tr>
 
 
-      <!-- Fila3 Añadir al carrito -->
+      
       <tr>
         <td>Liliana Death's Majesty</td>
         <td>0.5</td>
         <td><button>Añadir</button></td>
       </tr>
 
+      <tr></tr>
+        <td>Ajani Strength of the Pride </td>
+        <td>0.5</td>
+        <td><button>Añadir</button></td>
+      </tr>
+      
     </table>
 
+    
+    </br>
 
+    <table id="tablaCarrito">
+
+      <thead>Carrito de compra</thead>
+
+      <tr>
+        <th style="min-width: 200px;">Nombre</th>
+        <th style="min-width: 80px;">Coste</th>
+        <th style="min-width: 150px;"> Cantidad </th>
+      </tr>
+    
+
+      
+
+    </table>
 
 
 
