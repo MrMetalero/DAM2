@@ -4,12 +4,13 @@ import java.util.concurrent.*;
 public class Ruleta implements Runnable {
     private Random numeroRandom = new Random();
     private Boolean esperandoApuestas = false;
-    private int numeroResultado;
+    public static int numeroResultado;
     private Integer dineroBanca = 50000;
+    CyclicBarrier barrera;
 
 
-    Ruleta(){
-       
+    Ruleta(CyclicBarrier barrera){
+       this.barrera = barrera;
 
     }
 
@@ -19,10 +20,23 @@ public class Ruleta implements Runnable {
         iniciarJuego();
 
         System.out.println("Comprobando si se ha acabado de apostar..." );
-        if (esperandoApuestas == false) {
-            System.out.println("El número de la ruleta es: " + girarRuleta());
+        try {
+            barrera.await();
+        } catch (InterruptedException | BrokenBarrierException e) {
             
+            e.printStackTrace();
         }
+        System.out.println("SE HA ACABADO DE APOSTAR..." );
+       
+        
+        numeroResultado = girarRuleta();
+        // Una vez se alcancen los límites de la cyclic barrier, se pasará a generar el número
+        System.out.println("El número de la ruleta es: " + numeroResultado);
+            
+        
+
+
+       
 
     }
 
@@ -43,7 +57,7 @@ public class Ruleta implements Runnable {
     private void esperandoApuestas(){
         try {
             System.out.println("ESPERANDO APUESTAS");
-            Thread.sleep(30000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
             System.out.println("SE HA INTERRUMPIDO LA APUESTA");
