@@ -149,19 +149,14 @@
     </br>
 
     <table id="tablaCarrito">
-
       <thead>Carrito de compra</thead>
-
       <tr>
-        <th style="min-width: 200px;">Nombre</th>
-        <th style="min-width: 80px;">Coste</th>
-        <th style="min-width: 150px;"> Cantidad </th>
+          <th style="min-width: 200px;">Nombre</th>
+          <th style="min-width: 80px;">Coste</th>
+          <th style="min-width: 80px;">Cantidad</th>
+          <th style="min-width: 150px;">Quitar de la lista de la compra :3</th>
       </tr>
-    
-
-      
-
-    </table>
+  </table>
 
 
 
@@ -179,9 +174,21 @@
     - Objetivo: Aprender a manejar la aparición y desaparición de elementos con efectos, y trabajar con temporizadores en jQuery.
   -->
   
- 
+  </br>
+  </br>
   
-
+  <button id="btnNotificacion" style="
+    background-color: #007bff; 
+    color: white; 
+    border-radius: 5px; 
+    font-size: 14px; 
+    cursor: pointer; 
+    transition: background-color 0.3s;">
+    MOSTRAR LA NOTIFICACIÓN
+  </button>
+  <div id="notificacion" style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000;">
+      Esto es una notificación.
+  </div>
 
 
 
@@ -199,7 +206,21 @@
   -->
   
  
-
+  <h2>Buscador de Frases de Magic</h2>
+  <input type="text" id="campoBusqueda" placeholder="Busca entre las frases..." style="width: 300px; padding: 5px; margin-bottom: 10px;">
+  
+  <ul id="listaFrases" style="list-style-type: none; padding: 0;">
+      <li>“No te preocupes, si no robo tierras es culpa de las barajas preconstruidas.”</li>
+      <li>“Me encanta jugar con *counter*, pero luego me quejo de que me los hacen a mí.”</li>
+      <li>“¿Que no has jugado aún contra *Mono-Red*? Entonces te voy a dar un susto.”</li>
+      <li>“Jugar un combo y decir que es por 'habilidad' es como decir que el sol se pone por arte de magia.”</li>
+      <li>“Si la partida se alarga mucho, es que algo ha ido mal, mi combo no está saliendo.”</li>
+      <li>“¿Eldrazi? No, no, eso no son cartas, eso son pestes que arrasan con todo.”</li>
+      <li>“Te juro que me has hecho un *mulligan* de 10 y mi baraja sigue robando mal.”</li>
+      <li>“¿Tienes mana? No me vale, quiero más.”</li>
+      <li>“Si tu rival no está mirando su cementerio, probablemente se está montando un combo loco.”</li>
+      <li>“Tu turno 3, mi turno 3: ¡Adiós baraja!”</li>
+  </ul>
 
 
 
@@ -215,8 +236,21 @@
  
     - Objetivo: Trabajar con `setInterval` y efectos como `fadeIn()` y `fadeOut()` para mejorar el dinamismo. -->
 
+    <h2>Galería de Imágenes</h2>
 
+    <div>
+      <button id="anteriorButton">Anterior</button>
+      <button id="siguienteButton">Siguiente</button>
+  </div>
 
+  <div id="galeria">
+    <img src="img/Urza.jpg" alt="Imagen 1" class="imagenGaleria">
+    <img src="img/Ajani.webp" alt="Imagen 2" class="imagenGaleria">
+    <img src="img/Kaito.webp" alt="Imagen 3" class="imagenGaleria">
+    <img src="img/Chandra.jpg" alt="Imagen 4" class="imagenGaleria">
+  </div>
+    
+   
 
     
 </body>

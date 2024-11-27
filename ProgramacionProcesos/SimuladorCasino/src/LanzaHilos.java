@@ -4,7 +4,6 @@ import java.util.concurrent.CyclicBarrier;
 public class LanzaHilos {
     final static int NUMERO_JUGADORES = 4;
     public static CyclicBarrier newBarrier = new CyclicBarrier(13);
-        
    
 
         public  void crearJugadores(){

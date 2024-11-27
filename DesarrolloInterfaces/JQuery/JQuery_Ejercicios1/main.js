@@ -10,7 +10,7 @@
 
  function hoverElementos() {  
 
-   
+
 
     $("#listaPelis").children("li").children("img").hover(function(){
             $(this).prevAll().addBack().attr("src", "img/starRatingLit.png")
@@ -77,81 +77,86 @@
 //    - Objetivo: Practicar la manipulación de datos y la actualización del DOM en un contexto de simulación de e-commerce.
 
 
+$(document).ready(function () {
+    $("#tablaProductos").on("click", "button", function () {
+        var fila = $(this).closest("tr");
+        var nombreProducto = fila.find("td").eq(0).text();
+        var precioProducto = parseFloat(fila.find("td").eq(1).text());
 
-
-function addElementoCarrito() {
-
-   $("#tablaProductos").children("tr").children("td").children("button").on("click",function () { 
-    
-    var fila = $(this).closest('tr');
-    var nombreProducto = fila.find('td').eq(0).text();  // El primer <td> contiene el nombre
-    var precioProducto = parseFloat(fila.find('td').eq(1).text());  // El segundo <td> contiene el precio
-    
-
-    $("#tablaCarrito").append(
-        "<tr>" + 
-            "<td>" + nombreProducto + "</td>" +
-            "<td>" + precioProducto + "</td>" +
-            "<td><button class='remove-btn'>Remove</button></td>" +
-         "</tr>"
-          
-    );
-        
-    $("#tablaCarrito").children("tr").children("td").children("button")
-        $(selector).remove();
-    });
-
-    if ($('#tablaCarrito"').children("tr").children("td").text().trim() !== '') {
-        $(this).append("<p> </p>")
-    }
-
-    
-    
-}
-
-
-$(document).ready(function() {
-    // Event delegation to bind click event to dynamically added buttons
-    $("#tablaProductos").on("click", "button", function() {
-        var fila = $(this).closest('tr');  // Get the closest <tr> that contains the clicked button
-        var nombreProducto = fila.find('td').eq(0).text();  // Extract product name from the first <td>
-        var precioProducto = parseFloat(fila.find('td').eq(1).text());  // Extract price from the second <td>
-        
-       //Para comprobar si se encuentra ya el elemento clicado en el carrito
-       //Itera entre todos los tr del carrito y saca su texto del primer elemento para compararlo
         var productoEncontrado = false;
-        $("#tablaCarrito tr").each(function() {
-            var nombreProductoCarrito = $(this).find('td').eq(0).text();  // Get the product name from the cart
+
+        // Mirar si ya he metido el producto en el carrito
+        $("#tablaCarrito tr").each(function () {
+            var nombreProductoCarrito = $(this).find("td").eq(0).text();
             if (nombreProductoCarrito === nombreProducto) {
-                productoEncontrado = true;  // True es que si lo ha encontrado
-                return true;  
+                productoEncontrado = true;
+
+                // Incrementar la cantidad del producto
+                var cantidadActual = parseInt($(this).find(".cantidad").text());
+                $(this).find(".cantidad").text(cantidadActual + 1);
+                actualizarTotal();
+                return false;
             }
         });
 
-        if (productoEncontrado) {
-            $("#tablaCarrito").children("tr").
-
-        } else {
+        // Si no está en el carrito, lo agrego
+        if (!productoEncontrado) {
             $("#tablaCarrito").append(
                 "<tr>" +
                     "<td>" + nombreProducto + "</td>" +
-                    "<td>" + precioProducto + "</td>" +
-                    "<td>0</td>" +
-                    "<td><button class='remove-btn'>Eliminar</button></td>" +
+                    "<td class='precio'>" + precioProducto.toFixed(2) + "</td>" +
+                    "<td class='cantidad'>1</td>" +
+                    "<td>" +
+                        "<button class='remove-one-btn'>-</button>" +
+                        " <button class='remove-btn'>Eliminar</button>" +
+                    "</td>" +
                 "</tr>"
             );
+            actualizarTotal();
         }
-            
-        
-
     });
 
-    // Event handler to remove item from the cart when "Eliminar" is clicked
-    $("#tablaCarrito").on("click", ".remove-btn", function() {
-        $(this).closest('tr').remove();  // Remove the row containing the clicked button
+    // Botón para quitar un producto (reducir la cantidad)
+    $("#tablaCarrito").on("click", ".remove-one-btn", function () {
+        var fila = $(this).closest("tr");
+        var cantidadActual = parseInt(fila.find(".cantidad").text());
+
+        if (cantidadActual > 1) {
+            // Reducir la cantidad
+            fila.find(".cantidad").text(cantidadActual - 1);
+        } else {
+            // Si llega a 0, eliminar la fila completa
+            fila.remove();
+        }
+
+        actualizarTotal();
     });
+
+    // Botón para eliminar completamente una fila
+    $("#tablaCarrito").on("click", ".remove-btn", function () {
+        $(this).closest("tr").remove();
+        actualizarTotal();
+    });
+
+    function actualizarTotal() {
+        var total = 0;
+
+        // Recorrer cada fila de la tabla del carrito
+        $("#tablaCarrito tr").each(function () {
+            var precio = $(this).find(".precio").text();
+            var cantidad = $(this).find(".cantidad").text();
+
+            // Asegurarse de que precio y cantidad no estén vacíos
+            if (precio !== "" && cantidad !== "") {
+                total += parseFloat(precio) * parseInt(cantidad);
+            }
+        });
+
+        // Mostrar el total en el DOM
+        $("#totalCarrito").remove();
+        $("#tablaCarrito").after("<p style='text-align: center ;background-color :beige; max-width: 200px; border-radius:10px'  id='totalCarrito'><strong>Total:" + total.toFixed(2) + " €</p>");
+    }
 });
-
 
 
 
@@ -169,14 +174,19 @@ $(document).ready(function() {
 //    - Objetivo: Aprender a manejar la aparición y desaparición de elementos con efectos, y trabajar con temporizadores en jQuery.
 
  
-
+$(document).ready(function () {
+    
+    $("#btnNotificacion").on("click", function () {
+        
+        $("#notificacion")
+            .text("NOTIIIIFICAAAACIOOOOOOONNNNN GET EXILED!!!!") 
+            .fadeIn(500, function () {
+                //Cuando pasen 3 segundos, va a hacer timeout y lanzar la función de dentro para desaparer
+                setTimeout(function () { $("#notificacion").fadeOut(500);}, 3000); 
+            });
+    });
+});
  
-
-
-
-
-
-
 
 
 
@@ -187,7 +197,24 @@ $(document).ready(function() {
 //    - Objetivo: Practicar el uso de `keyup()` y `filter()` para filtrar datos y mejorar la experiencia de usuario en tiempo real.
 
  
+$(document).ready(function () {
+    // Evento para el buscador de frases
+    $("#campoBusqueda").on("keyup", function () {
+        var textoBusqueda = $(this).val().toLowerCase(); // Texto de búsqueda en minúsculas
 
+        //Paso entre todas las frases de magic :)
+        $("#listaFrases li").each(function () {
+            var frase = $(this).text().toLowerCase();
+
+            // Si la encuentra la muestra, si no, la oculta
+            if (frase.includes(textoBusqueda)) {
+                $(this).show(); 
+            } else {
+                $(this).hide(); 
+            }
+        });
+    });
+});
 
 
 
@@ -205,8 +232,85 @@ $(document).ready(function() {
 //    - Objetivo: Trabajar con `setInterval` y efectos como `fadeIn()` y `fadeOut()` para mejorar el dinamismo.
 
 
+$(document).ready(function() {
+    var indexImagen = 0; 
+    var intervalo;
+
+    // Para que TODAS las imágenes se pongan al mismo tamaño que si no me da mucho mareo moviendo la página
+    $(".imagenGaleria").css({
+        "width": "500px",   
+        "height": "700px",  
+        "display": "none"   
+    });
+
+    
+    $(".imagenGaleria").eq(indexImagen).show();
+
+    // Va pasando entre las imágenes usando el índice hasta que se acaben y vuelta a empezar
+    function cambiarImagen() {
+        var imagenes = $(".imagenGaleria");
+        var totalImagenes = imagenes.length;
+
+        
+        $(imagenes[indexImagen]).hide();
+
+        // Incrementar el índice para pasar a la siguiente imagen
+        indexImagen = (indexImagen + 1) % totalImagenes; // Si llegamos al final, vuelve a la primera
+
+        // Mostrar la nueva imagen
+        $(imagenes[indexImagen]).show();
+    }
 
 
+
+    // Inicia cada 3 segundos la función para cambiar la imagen :)
+    intervalo = setInterval(cambiarImagen, 3000);
+
+    
+
+
+
+    $("#siguienteButton").click(function() {
+        clearInterval(intervalo); // Detener el slideshow automático
+
+        var imagenes = $(".imagenGaleria");
+        var totalImagenes = imagenes.length;
+
+
+        //Esto lo he tenido que mirar porque no me salía ni a patadas la vueltecita al indice que tocaba y no podía más ya 
+        $(imagenes[indexImagen]).hide();
+
+        indexImagen = (indexImagen + 1) % totalImagenes; 
+
+     
+        $(imagenes[indexImagen]).show();
+
+        intervalo = setInterval(cambiarImagen, 3000);
+    });
+
+ 
+
+
+    $("#anteriorButton").click(function() {
+        clearInterval(intervalo); // esto para la ejecución el interval del slideshow
+
+        var imagenes = $(".imagenGaleria");
+        var totalImagenes = imagenes.length;
+
+        $(imagenes[indexImagen]).hide();
+
+        indexImagen = indexImagen - 1;
+        // Si estamos en la primera imagen, vuelve a la última para hacer bien la vuelta
+        if (indexImagen < 0) {
+            indexImagen = totalImagenes - 1; 
+        }
+
+        
+        $(imagenes[indexImagen]).show();
+
+        intervalo = setInterval(cambiarImagen, 3000);
+    });
+});
 
 
 
