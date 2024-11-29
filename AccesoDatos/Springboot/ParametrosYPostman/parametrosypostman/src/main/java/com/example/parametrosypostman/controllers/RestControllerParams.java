@@ -18,7 +18,7 @@ public class RestControllerParams {
     @GetMapping("/detailsDTOParams")
     public UserDto mostrarDTO(
         @RequestParam (required = false) String name,
-        @RequestParam (required = false) String lastname,
+        @RequestParam String lastname,
         @RequestParam (required = false) String title
         
 
@@ -55,6 +55,14 @@ public class RestControllerParams {
         return userDto;
     }
 
+
+    @PostMapping("/crearUsuario")
+    public UserDto crearUsuario(@RequestBody UserDto userD){
+        return userD;
+
+    }
+
+    
 
 
 }
