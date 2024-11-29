@@ -6,13 +6,17 @@ public class User {
     private String lastname;
     private String email;
     
-    
-    public User(String name, String lastname){
+ 
+    public User(String name, String lastName) {
         this.name = name;
-        this.lastname = lastname;
-        
+        this.lastname = lastName;
     }
-    
+
+    public User(String name, String lastName, String email) {
+        this.name = name;
+        this.lastname = lastName;
+        this.email = email;
+    }
     
     public String getEmail() {
         return email;

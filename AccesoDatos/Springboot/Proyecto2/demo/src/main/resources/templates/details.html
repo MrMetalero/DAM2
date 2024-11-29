@@ -1,28 +1,49 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th ="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio2Completo</title>
+    <title>Ejercicio 2 Completo</title>
+    <style>
+        .sin-email {
+            color: red;
+        }
+
+        
+    </style>
 </head>
 <body>
+    <h1>Tabla de Usuarios</h1>
+
+    <!-- SI NO ENCUENTRA USERS -->
+    <div th:if="${usuarios.isEmpty()}">
+        <p>No hay usuarios disponibles.</p>
+    </div>
+
     
-    <h1>Tabla de usuarios</h1>
-    <table style="border: 1px solid black;">
+    <table th:unless="${usuarios.isEmpty()}" style="border: 1px solid black; border-collapse: collapse; width: 50%;">
         <thead>
             <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
+                <th style="border: 1px solid black;">Nombre</th>
+                <th style="border: 1px solid black;">Apellido</th>
+                <th style="border: 1px solid black;">Email</th>
             </tr>
         </thead>
-        <tbody style="border: 1px solid black ;">
-            <!-- Iterate over the usuarios list -->
-            <tr style="border: 1px solid black ;" th:each="User:${usuarios}">
-                <td style="border: 1px solid black ;" th:text="${User.name}"></td>  <!-- Display the user's name -->
-                <td style="border: 1px solid black ;" th:text="${User.lastname}"></td>  <!-- Display the user's lastname -->
+        <tbody>
+            <tr th:each="user : ${usuarios}">
+                <td style="border: 1px solid black;" th:text="${user.name}"></td>
+                <td style="border: 1px solid black;" th:text="${user.lastname}"></td>
+                <td style="border: 1px solid black; color: red;" 
+                    th:if="${user.email == null}">
+                    NINGUNOO
+                </td>
+                <td style="border: 1px solid black;" 
+                    th:if="${user.email != null}" 
+                    th:text="${user.email}">
+                </td>
+            </tr>
             </tr>
         </tbody>
     </table>
-
 </body>
 </html>
