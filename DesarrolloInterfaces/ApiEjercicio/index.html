@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios desde API</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Selecciona un usuario</h1>
+    <label for="userSelect">Usuario:</label>
+    <select id="userSelect">
+        <option value="" disabled selected>Selecciona uno de los usuarios</option>
+    </select>
+    <div id="selectedUserId" style="margin-top: 20px; font-weight: bold;">
+        ID del usuario seleccionado: <p>No se ha seleccionado ninguno</p>
+    </div>
+
+    <script>
+        // Esta vez lo hago en un documento que se me hace más cómodo para seleccionar los elementos
+        $(document).ready(function() {
+            // Aquí pillo los usuarios de la API que ya están allí,
+            //los meto como un parámetro en user y luego itero para ponerlos como 
+            //un option en el userSelect
+            $.get('https://jsonplaceholder.typicode.com/users', function(users) {
+                users.forEach(function(user) {
+                    $('#userSelect').append(
+                        `<option value="${user.id}">${user.name}, ${user.username}</option>`
+                    );
+                });
+            });
+
+
+
+
+            // Esto me vale para extraer de cada elemento, el valor ID que pillé antes de la API
+            //como user.id y poder mostrarlo en un 
+        $('#userSelect').on('change', function() {
+
+            // Pilla el valor de mi id seleccionado "On change" osea al seleccionar y lo iguala al valor del
+            //objeto que estamos seleccionando
+            const selectedId = $(this).val();
+
+            // Cambiar el texto del parrafillo o a no se ha seleccionado a al de la id del seleccionado en el
+            // options
+            if (selectedId) {
+                $('#selectedUserId p').text(selectedId);
+            } else {
+                $('#selectedUserId p').text('No se ha seleccionado ninguno');
+            }
+        });
+        });
+    </script>
+</body>
+</html>
