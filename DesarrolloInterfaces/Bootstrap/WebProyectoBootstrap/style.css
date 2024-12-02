@@ -1,0 +1,30 @@
+
+
+body {
+    background-image: url('res/img/taverna1.png');
+    font-family: sans-serif ;
+
+}
+
+p{
+    color: white;
+    font-weight: bold;
+    
+}
+
+@font-face {
+    font-family: 'miFuenteMedieval';
+    src: url('res/font/MedievalSharp-Bold.ttf') format('truetype'); 
+}
+
+header{
+    
+}
+h1{
+font-family: 'miFuenteMedieval', sans-serif;
+  background-color: white;
+  border-radius: 3px;
+    
+}
+
+
