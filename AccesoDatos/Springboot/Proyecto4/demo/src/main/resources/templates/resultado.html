@@ -8,8 +8,10 @@
 <body>
     
     <h1>Formulario Enviado</h1>
-    <p><strong>Nombre:</strong> ${nombre}</p>
-    <p><strong>Apellido:</strong> ${apellido}</p>
+    <p th:text="${nombre}"><strong>Nombre:</strong></p>
+    <p th:text="${apellido}"><strong>Apellido:</strong></p>
+
+
 
 </body>
 </html>

@@ -3,6 +3,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -16,9 +17,9 @@ public class FormController {
 
     // This method will handle the POST request when the form is submitted
     @PostMapping("/submitForm")
-    public String handleFormSubmit(@RequestParam("nombre") String nombre, 
-                                    @RequestParam("apellido") String apellido, 
-                                    Model model) {
+    public String handleFormSubmit(@RequestParam  String nombre, 
+                                    @RequestParam String apellido, 
+                                    ModelMap model) {
         // Add data to model to send to the next view
         model.addAttribute("nombre", nombre);
         model.addAttribute("apellido", apellido);
