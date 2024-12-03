@@ -3,13 +3,27 @@
 body {
     background-image: url('res/img/taverna1.png');
     font-family: sans-serif ;
-
+    margin-bottom: 0px; /* por defecto sin márgenes */
+    padding: 0px; /* por defecto sin márgenes */
 }
 
-p{
-    color: white;
+.titulo{
+    margin-bottom: 0px;
+    padding: 0px;
+    color: rgb(0, 0, 0);
     font-weight: bold;
+    background-color: rgb(255, 255, 255);
     
+}
+
+
+div{
+    margin-bottom: 0px; /* por defecto sin márgenes */
+    padding: 0px;   /* por defecto sin márgenes */
+    background-color: blue;
+    font-weight: bold;
+    color: white;
+
 }
 
 @font-face {
@@ -18,13 +32,16 @@ p{
 }
 
 header{
-    
+    margin-bottom: 0px;
+    padding: 0px;
 }
 h1{
-font-family: 'miFuenteMedieval', sans-serif;
-  background-color: white;
-  border-radius: 3px;
-    
+    margin-bottom: 0px; /* por defecto sin márgenes */
+    padding: 0px; /* por defecto sin márgenes */
+    font-family: 'miFuenteMedieval', sans-serif;
+    background-color: rgb(0, 0, 0);
+    border-radius: 3px;
+        
 }
 
 
