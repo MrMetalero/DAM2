@@ -1,14 +1,13 @@
 
 
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box; /* Asegúrate de que los bordes y rellenos no afecten el tamaño */
 }
+
 body {
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-bottom: 0px; /* por defecto sin márgenes */
+    margin: 0px;
     padding: 0px;   /* por defecto sin márgenes */
     background-image: url('res/img/taverna1.png');
     font-family: sans-serif ;
@@ -16,46 +15,44 @@ body {
     padding: 0px; /* por defecto sin márgenes */
 }
 
-.titulo{
-    margin-bottom: 0px;
-    padding: 0px;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
-    background-color: rgb(255, 255, 255);
-    
+@font-face {
+    font-family: 'miFuenteMedieval';
+    src: url('res/font/MedievalSharp-Bold.ttf') format('truetype');
 }
 
+nav{
+    margin: 0px;
+    padding: 0px;   /* por defecto sin márgenes */
+    font-weight: bold;
+    color: white;
+    background-color: grey;
+}
 
 div{
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 0px; /* por defecto sin márgenes */
     padding: 0px;   /* por defecto sin márgenes */
-    background-color: blue;
+    background-color: rgb(255, 255, 255);
     font-weight: bold;
-    color: white;
-
-}
-
-@font-face {
-    font-family: 'miFuenteMedieval';
-    src: url('res/font/MedievalSharp-Bold.ttf') format('truetype'); 
-}
-
-header{
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    
-}
-h1{
-    margin-bottom: 0px; /* por defecto sin márgenes */
-    padding: 0px; /* por defecto sin márgenes */
-    font-family: 'miFuenteMedieval', sans-serif;
-    background-color: rgb(0, 0, 0);
-    border-radius: 3px;
-    width: 100%; /* Asegura que el h1 ocupe el 100% del ancho disponible */
+    color: rgb(0, 0, 0);
     text-align: center;
+
 }
+
+
+.titulo{
+    margin: 10px;
+    font-family: 'miFuenteMedieval', sans-serif;
+    text-align: center;
+    box-shadow: 3,3,blue;
+}
+
+
+.btn-primary{
+    --bs-btn-color: black ;
+
+}
+
 
 
