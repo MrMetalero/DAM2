@@ -23,20 +23,22 @@ body {
 nav{
     margin: 0px;
     padding: 0px;   /* por defecto sin márgenes */
-    font-weight: bold;
     color: white;
     background-color: grey;
+    font-family: "miFuenteMedieval", sans-serif;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+
 }
 
-div{
+nav div{
     margin-left: 0px;
     margin-right: 0px;
     margin-bottom: 0px; /* por defecto sin márgenes */
     padding: 0px;   /* por defecto sin márgenes */
     background-color: rgb(255, 255, 255);
-    font-weight: bold;
     color: rgb(0, 0, 0);
     text-align: center;
+    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
 
 }
 
@@ -46,13 +48,21 @@ div{
     font-family: 'miFuenteMedieval', sans-serif;
     text-align: center;
     box-shadow: 3,3,blue;
-}
-
-
-.btn-primary{
-    --bs-btn-color: black ;
-
+    width: fit-content;
 }
 
 
 
+.card{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+
+}
+
+#contenidoCentral{
+    margin-top:  30px;
+}
+
+
+#metalsoftLogo{
+    width: 70px;
+}
