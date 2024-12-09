@@ -1,26 +1,20 @@
 
 
-const barraNavegacion = document.getElementById("navBarGeneral")
-const sidepanel = document.getElementById("previewCardMain")
+const cardAll = document.querySelectorAll(".card")
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    fadeIn(sidepanel);
+    fadeIn(cardAll);
 });
 
-function fadeIn(element) {
-    let opacity = 0; // Inicializamos la opacidad en 0
-    element.style.opacity = opacity;
-    element.style.display = "block"; // Aseguramos que sea visible
-
-    const interval = setInterval(() => {
-        if (opacity < 1) {
-            opacity += 0.05; // Incrementamos la opacidad gradualmente
-            element.style.opacity = opacity;
-        } else {
-            clearInterval(interval); // Detenemos el intervalo al llegar a 1
-        }
-    }, 50); // Incrementos cada 50 ms
+function fadeIn(elementos, delay = 300) {
+ 
+    elementos.forEach((elemento, index) => {
+        setTimeout(() => {
+            elemento.style.opacity = "1";
+            elemento.style.transform = "translateY(0)";
+        }, index * delay)
+    });
 }
 
 

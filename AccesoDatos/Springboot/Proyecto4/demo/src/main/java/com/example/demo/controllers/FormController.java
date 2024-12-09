@@ -15,7 +15,7 @@ public class FormController {
         return "userlist"; // this will return the 'form.html' page
     }
 
-    // This method will handle the POST request when the form is submitted
+    // Este método se encarga de recibir por POST los parámetros de la página anterior
     @PostMapping("/submitForm")
     public String handleFormSubmit(@RequestParam  String nombre, 
                                     @RequestParam String apellido, 

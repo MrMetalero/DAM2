@@ -10,14 +10,15 @@ body {
     margin: 0px;
     padding: 0px;   /* por defecto sin márgenes */
     background-image: url('res/img/taverna1.png');
-    font-family: sans-serif ;
     margin-bottom: 0px; /* por defecto sin márgenes */
     padding: 0px; /* por defecto sin márgenes */
+    font-family: 'miFuenteCorpo', sans-serif;
+    text-align: center;
 }
 
 @font-face {
-    font-family: 'miFuenteMedieval';
-    src: url('res/font/MedievalSharp-Bold.ttf') format('truetype');
+    font-family: 'miFuenteCorpo';
+    src: url('res/font/CORPOREA.TTF') format('truetype');
 }
 
 nav{
@@ -25,7 +26,7 @@ nav{
     padding: 0px;   /* por defecto sin márgenes */
     color: white;
     background-color: grey;
-    font-family: "miFuenteMedieval", sans-serif;
+    font-family: "miFuenteCorpo", sans-serif;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 
 }
@@ -38,14 +39,14 @@ nav div{
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     text-align: center;
-    text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
 
 }
 
 
 .titulo{
+    padding-top: 10px;
     margin-top: 10px;
-    font-family: 'miFuenteMedieval', sans-serif;
+    font-family: 'miFuenteCorpo', sans-serif;
     text-align: center;
     width: fit-content;
 }
@@ -54,11 +55,16 @@ nav div{
 
 .card{
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-
+    font-family: 'miFuenteCorpo', sans-serif;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
 }
 
 #contenidoCentral{
     margin-top:  30px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 

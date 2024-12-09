@@ -1,6 +1,10 @@
 package com.example.demo.controllers;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +17,9 @@ import com.example.demo.models.dto.UserDto;
 @RestController
 @RequestMapping("/api")
 public class RestControllerParams {
+   
+    // @Value("#{${listadoMap}}")
+    // private Map<String, Object> listadoMap;
 
 
     @GetMapping("/detailsDTOParams")
@@ -36,12 +43,24 @@ public class RestControllerParams {
             userDto.setTitle(title);
         }
 
+        
+
         return userDto;
 
         
     }
 
 
+    // @GetMapping("/JsonMappings")
+    //  public Map<String,Object> mostrarDTO( ){
+    //     Map<String,Object> mostrarMap = new HashMap<>();
+       
+    //     mostrarMap = listadoMap;
+        
+
+    //     return mostrarMap;
+    // }
+    
 
     @GetMapping("/dtoParamsPath/{name}/{lastname}")
     public UserDto DtoParamsPath(
@@ -51,6 +70,7 @@ public class RestControllerParams {
         UserDto userDto = new UserDto();
         userDto.setName(name);
         userDto.setLastname(lastname);
+
 
         return userDto;
     }

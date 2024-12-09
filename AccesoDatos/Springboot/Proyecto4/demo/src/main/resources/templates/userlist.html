@@ -19,13 +19,23 @@
 
     <form action="http://localhost:8080/submitForm" method="POST">
         <p>Introduce los datos para enviar a la siguiente vista por POST</p>
-        <label for="nombre">Nombre</label>
-        <input id="nombre" type="text" name="nombre" required>
-
-        <br>
         
-        <label for="apellido">Apellido</label>
-        <input id="apellido" type="text" name="apellido" required>
+        <br>
+        <table style="border: 1, solid,black">
+            <tr>
+                <label for="nombre">Nombre</label>
+                <input id="nombre" type="text" name="nombre" required>
+            </tr>
+
+
+            <tr>
+                <label for="apellido">Apellido</label>
+                <input id="apellido" type="text" name="apellido" required>
+            </tr>
+
+
+        </table>
+        
 
         <br>
         <input type="submit" value="Enviar los datos">
