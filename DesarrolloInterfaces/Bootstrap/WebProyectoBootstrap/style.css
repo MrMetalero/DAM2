@@ -37,7 +37,7 @@ nav div{
     margin-bottom: 0px; /* por defecto sin márgenes */
     padding: 0px;   /* por defecto sin márgenes */
     background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     text-align: center;
 
 }
@@ -61,10 +61,15 @@ nav div{
     transition: opacity 1s ease, transform 1s ease;
 }
 
-#contenidoCentral{
+body .contenidoCentral{
     margin-top:  30px;
     margin-left: 0px;
     margin-right: 0px;
+    
+   
+}
+body .contenidoCentral h2,body .contenidoCentral p {
+    color: white;
 }
 
 
@@ -77,4 +82,10 @@ nav div{
 .cardText{
     text-align: center;
 
+}
+.card-body{
+    background-color: rgba(66, 61, 61, 0.466);
+    border-radius: 5px;
+   
+    
 }
