@@ -44,10 +44,9 @@ nav div{
 
 
 .titulo{
-    margin: 10px;
+    margin-top: 10px;
     font-family: 'miFuenteMedieval', sans-serif;
     text-align: center;
-    box-shadow: 3,3,blue;
     width: fit-content;
 }
 
@@ -65,4 +64,11 @@ nav div{
 
 #metalsoftLogo{
     width: 70px;
+}
+
+
+
+.cardText{
+    text-align: center;
+
 }
