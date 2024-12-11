@@ -3,5 +3,15 @@
     "name": "mi.listaMap",
     "type": "java.lang.String",
     "description": "A description for 'mi.listaMap'"
+  },
+  {
+    "name": "listadoMap",
+    "type": "java.lang.String",
+    "description": "A description for 'listadoMap'"
+  },
+  {
+    "name": "config.listadoAsignaturas",
+    "type": "java.lang.String",
+    "description": "A description for 'config.listadoAsignaturas'"
   }
 ]}

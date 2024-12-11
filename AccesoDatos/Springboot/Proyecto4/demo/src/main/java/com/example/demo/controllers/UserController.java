@@ -19,7 +19,7 @@ public class UserController {
 
         model.put("title","Título");
         model.put("user", user);
-
+        model.put("name", "Daniel");
         
         return "details";
     }
