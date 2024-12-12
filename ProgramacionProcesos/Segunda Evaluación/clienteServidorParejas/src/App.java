@@ -1,3 +1,7 @@
+import Cliente;
+import Server;
+
+package app;
 public class App {
 
     final private static String host = "localhost";
