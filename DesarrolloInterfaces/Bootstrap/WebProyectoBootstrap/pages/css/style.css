@@ -77,11 +77,10 @@ nav .buttonNav:hover, nav .buttonNav a:hover {
 }
 
 
-
-.contenidoCentral .card a img{
-    max-width: 100%; /* Para que las imágenes no deformen el card o se salgan */
-    max-height: 100%;
+.carousel-item img {
+    object-fit: cover; /* Opcional: Recorta las imágenes manteniendo el centro visible */
 }
+
 
 body .contenidoCentral{
     margin-top:  30px;

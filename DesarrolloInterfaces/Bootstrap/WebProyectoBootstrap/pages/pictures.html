@@ -79,42 +79,41 @@
 
 
     <!--Contenido Central-->
-    <div class="container-fluid row contenidoCentral overflow-scroll">
+    <div class="container-fluid row contenidoCentral ">
 
-        <div id="carrouselPictures" class="col-11 mx-auto carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#miCarrusel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#miCarrusel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#miCarrusel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-              </div>
-              
-
-              <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="../res/img/colosseum.jpg" class="d-block w-100" alt="Primera diapositiva">
+        <div class="container contenedorCarousel my-5 col-12 col-sm-8 col-xl-6">
+            <div id="carouselImagenes" class="carousel slide" data-bs-ride="carousel">
+                <!-- Indicadores -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselImagenes" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselImagenes" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselImagenes" data-bs-slide-to="2" aria-label="Slide 3"></button>
                 </div>
-                <div class="carousel-item">
-                  <img src="../res/img/cardGamedev.jpg" class="d-block w-100" alt="Segunda diapositiva">
+        
+               
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="../res/img/colosseum.jpg" class="d-block w-100 img-fluid" alt="Primera diapositiva">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../res/img/cardGamedev.jpg" class="d-block w-100 img-fluid" alt="Segunda diapositiva">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="../res/img/cardGamedev.jpg" class="d-block w-100 img-fluid" alt="Tercera diapositiva">
+                    </div>
                 </div>
-                <div class="carousel-item">
-                  <img src="../res/img/cyber3.jpg" class="d-block w-100" alt="Tercera diapositiva">
-                </div>
-              </div>
-
-              <button class="carousel-control-prev" type="button" data-bs-target="#carrouselPictures" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-              </button>
-              <button class="carousel-control-next" type="button" data-bs-target="#carrouselPictures" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Siguiente</span>
-              </button>
+        
+                <!-- Botones de control -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselImagenes" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Anterior</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselImagenes" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Siguiente</span>
+                </button>
+            </div>
         </div>
-    
-      
-
-
-
     
     </div>
 
