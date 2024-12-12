@@ -10,18 +10,19 @@
 body {
     margin: 0px;
     padding: 0px;   /* por defecto sin márgenes */
-    background-image: url('res/img/cyber2.jpg');
+    background-image: url('../../res/img/cyber2.jpg');
     background-size: 100%;
     background-size: cover;
     margin-bottom: 0px; /* por defecto sin márgenes */
     padding: 0px; /* por defecto sin márgenes */
     font-family: 'miFuenteCorpo', sans-serif;
     text-align: center;
+    overflow-x: hidden; /*Para evitar que mi página se desborde por el eje X y tenga scrolls laterales molestos*/
 }
 
 @font-face {
     font-family: 'miFuenteCorpo';
-    src: url('res/font/CORPOREA.TTF') format('truetype');
+    src: url('../../res/font/CORPOREA.TTF') format('truetype');
 }
 
 .navbar h1, .navbar a{
@@ -75,11 +76,7 @@ nav .buttonNav:hover, nav .buttonNav a:hover {
 
 }
 
-.contenidoCentral .cardDescripcion{
-    margin-bottom: 40px;
-    
 
-}
 
 .contenidoCentral .card a img{
     max-width: 100%; /* Para que las imágenes no deformen el card o se salgan */
