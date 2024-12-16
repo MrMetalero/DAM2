@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.inyeccion.models.Product;
 import com.example.inyeccion.services.ProductService;
+import com.example.inyeccion.services.ProductServiceImpl;
 
 @RestController
 @RequestMapping("/api") 
 public class ControladorRest {
    
-    private ProductService service = new ProductService();
+    private ProductServiceImpl service = new ProductServiceImpl();
 
     @GetMapping("/list")
     public List<Product> list(){

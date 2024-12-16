@@ -77,6 +77,11 @@ nav .buttonNav:hover, nav .buttonNav a:hover {
 
 }
 
+.contenidoCentral .card button{
+    background-color: rgba(151, 201, 201, 0.274);
+    border-color: rgba(240, 248, 255, 0.267);
+    
+}
 
 .carousel-item img {
     object-fit: fill; /* Opcional: Recorta las imágenes manteniendo el centro visible */
@@ -110,11 +115,28 @@ body .contenidoCentral .card h3 {
 
 }
 
+.contenedorRedes{
+    background-color: rgba(0, 0, 0, 0.24);
+    border-radius: 5px;
+    margin: 7px;
+  
+}
+
+.contenedorRedes div *{
+    max-height: 30px;
+    
+}
+
 .footerAnimado{
     background-color: rgba(255, 0, 0, 0.315);
     color: white;
     font-family: 'MifuenteCorpo';
     
+}
+
+.logoFooter img{
+    max-height: 30px;
+    box-shadow: 5px 5px 10px rgba(78, 32, 32, 0.842);
 }
 
 .franjaFooter{
@@ -125,7 +147,7 @@ body .contenidoCentral .card h3 {
 
 .elementoAnimadoFooter{
     animation: footerLoop 10s linear infinite;
-
+    max-height: 20px;
 }
 
 .elementoAnimadoFooter p{

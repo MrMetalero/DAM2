@@ -1,5 +1,22 @@
 
 
+//Para usar los tooltips y los popovers he visto que hace falta inicializarlos
+//Así que aquí lo hacemos
+document.addEventListener('DOMContentLoaded', function () {
+    // Inicializar los tooltips
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTrigger) {
+      return new bootstrap.Tooltip(tooltipTrigger);
+    });
+
+    // Inicializar los popovers
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+    popoverTriggerList.map(function (popoverTrigger) {
+      return new bootstrap.Popover(popoverTrigger);
+    });
+});
+
+
 const cardAll = document.querySelectorAll(".card")
 
 document.addEventListener("DOMContentLoaded", () => {
