@@ -1,29 +1,19 @@
-const express = require('express');
-const fetch = require('node-fetch');
+const express = require("express");
+const fetch = require("node-fetch");
 const app = express();
 
-const STEAM_API_KEY = 'YOUR_STEAM_API_KEY';
-
-app.get('/api/achievements', async (req, res) => {
-    const steamid = req.query.steamid;
-
-    if (!steamid) {
-        return res.status(400).send({ error: 'Steam ID is required.' });
-    }
+app.get("/api/steam", async (req, res) => {
+    const { steamid, appid } = req.query;
+    const apiKey = "7CA27BA0444D3DE930BC7C2619FB466D";
+    const url = `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key=${apiKey}&steamid=${steamid}&appid=${appid}`;
 
     try {
-        const response = await fetch(
-            `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key=${STEAM_API_KEY}&steamid=${steamid}`
-        );
+        const response = await fetch(url);
         const data = await response.json();
         res.json(data);
     } catch (error) {
-        console.error('Error fetching from Steam API:', error);
-        res.status(500).send({ error: 'Failed to fetch data from Steam API.' });
+        res.status(500).send(error.message);
     }
 });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Proxy server running on http://localhost:${PORT}`);
-});
+app.listen(3000, () => console.log("Proxy running on http://localhost:3000"));

@@ -70,10 +70,11 @@ function fadeIn(elementos, delay = 300) {
 const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
 // Steam API URL (replace YOUR_STEAM_API_KEY with your actual key)
-const apiKey = '7CA27BA0444D3DE930BC7C2619FB466D';  // Your API Key
-const steamId = '76561198096215470';  // Your Steam ID
-const steamApiUrl = `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key=${apiKey}&steamid=${steamId}`;
+const steamId = "76561198096215470";
+const appId = "1245620"; // Cambia por el AppID del juego deseado
+const apiKey = "7CA27BA0444D3DE930BC7C2619FB466D";
 
+const steamApiUrl = `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key=${apiKey}&steamid=${steamId}&appid=${appId}`;
 // Fetching the data via the CORS proxy
 async function fetchAchievements() {
     try {
