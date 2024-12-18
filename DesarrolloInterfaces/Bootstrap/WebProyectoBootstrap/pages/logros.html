@@ -77,22 +77,33 @@
 
     </nav>
 
-
     <!--Contenido Central-->
     <div class="container-fluid row contenidoCentral">
-
-        <div class="container-fluid card row">
-
-            <div class="card-body">
-                <div class="col-4 h-100 w-100">
-                    
+        <div class="container-fluid card h-100">
+            <div class="card-body row">
+                <!-- Achievement Cards -->
+                <div id="achievementCards" class="card col-12 h-100">
+                    <!-- Achievements will dynamically load here -->
                 </div>
             </div>
-          
         </div>
-
-    
     </div>
+
+      <!-- Form for fetching achievements -->
+      <form id="achievementForm" class="mt-4">
+        <div class="container">
+            <div class="mb-3">
+                <input 
+                    type="text" 
+                    id="steamIdInput" 
+                    class="form-control" 
+                    placeholder="Enter Steam ID" 
+                    required
+                >
+            </div>
+            <button type="submit" class="btn btn-primary">Get Achievements</button>
+        </div>
+    </form>
 
 
     <footer class="container-fluid position-fixed bottom-0  py-3">
