@@ -1,0 +1,199 @@
+
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box; /* Asegura de que los bordes y rellenos no afecten el tamaño */
+}
+
+body {
+    margin: 0px;
+    padding: 0px;   /* por defecto sin márgenes */
+    background-image: url('../../res/img/cyber2.jpg');
+    background-size: 100%;
+    background-size: cover;
+    margin-bottom: 0px; /* por defecto sin márgenes */
+    padding: 0px; /* por defecto sin márgenes */
+    font-family: 'miFuenteCorpo', sans-serif;
+    text-align: center;
+    overflow-x: hidden; /*Para evitar que mi página se desborde por el eje X y tenga scrolls laterales molestos*/
+}
+
+@font-face {
+    font-family: 'miFuenteCorpo';
+    src: url('../../res/font/CORPOREA.TTF') format('truetype');
+}
+
+.navbar h1, .navbar a{
+    margin: 0px;
+    padding: 0px;   /* por defecto sin márgenes */
+    color: rgb(212, 217, 221);
+    background-color: rgba(128, 128, 128, 0);
+    font-family: "miFuenteCorpo", sans-serif;
+    
+
+}
+
+.metalsoftLink:hover{
+   color: rgb(75, 144, 204);
+    text-shadow: 3px 3px 3px rgba(233, 235, 235, 0.082) ;
+
+}
+
+
+
+nav div{
+    background-color: rgba(230, 113, 245, 0.26);
+    text-align: center;
+
+}
+
+nav .buttonNav:hover, nav .buttonNav a:hover {
+    background-color: rgba(62, 191, 241, 0.068);
+}
+
+
+.titulo{
+    padding-top: 10px;
+    margin-top: 10px;
+    font-family: 'miFuenteCorpo';
+    text-align: center;
+    text-decoration: none;
+    font-size: 190%;
+}
+
+
+.contenidoCentral .card{
+    box-shadow: 5px 5px 10px rgba(78, 32, 32, 0.5);
+    font-family: 'miFuenteCorpo', sans-serif;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease; /*Para la animación de entrada*/
+    background-color: rgb(131, 131, 131);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    
+
+}
+
+.contenidoCentral .card button{
+    background-color: rgba(151, 201, 201, 0.274);
+    border-color: rgba(240, 248, 255, 0.267);
+    
+}
+
+.carousel-item img {
+    object-fit: fill; /* Opcional: Recorta las imágenes manteniendo el centro visible */
+    
+}
+
+
+body .contenidoCentral{
+    margin-top:  30px;
+    margin-left: 0px;
+    margin-right: 0px;
+    
+   
+}
+body .contenidoCentral p {
+    color: white;
+}
+
+body .contenidoCentral .card h3 {
+    color: rgb(0, 0, 0);
+}
+
+#metalsoftLogo{
+    width: 70px;
+}
+
+form label{
+    color: white;
+    text-shadow: 5px 5px 10px rgba(250, 0, 0, 0.075);
+}
+input.form-control{
+    color: rgb(255, 255, 255);
+   background-color: rgba(34, 127, 209, 0.562);
+}
+
+.contenidoCentral textarea{
+    color: rgb(255, 255, 255);
+    background-color: rgba(34, 127, 209, 0.562);
+}
+
+textarea.form-control:focus{
+    color: rgb(255, 255, 255);
+    background-color: rgba(34, 127, 209, 0.897);
+}
+
+input.form-control:focus{
+    color: rgb(255, 255, 255);
+    background-color: rgba(34, 127, 209, 0.897);
+}
+
+form .campoForm{
+    background-clip: content-box;
+    background-color: rgba(233, 85, 66, 0.103);
+    border-radius: 20px;
+}
+
+.cardText{
+    text-align: center;
+
+}
+
+.contenedorRedes{
+    background-color: rgba(0, 0, 0, 0.24);
+    border-radius: 5px;
+    margin: 7px;
+  
+}
+
+.contenedorRedes div *{
+    max-height: 30px;
+    
+}
+
+.footerAnimado{
+    background-color: rgba(255, 0, 0, 0.315);
+    color: white;
+    font-family: 'MifuenteCorpo';
+    
+}
+
+.logoFooter img{
+    max-height: 30px;
+    box-shadow: 5px 5px 10px rgba(78, 32, 32, 0.842);
+}
+
+.franjaFooter{
+    background-color: rgba(0, 0, 255, 0.315);
+}
+
+
+
+.elementoAnimadoFooter{
+    animation: footerLoop 10s linear infinite;
+    max-height: 20px;
+}
+
+.elementoAnimadoFooter p{
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    
+}
+
+@keyframes footerLoop{
+
+    0% {
+        transform: translateX(-100%); 
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+
+
+
+
