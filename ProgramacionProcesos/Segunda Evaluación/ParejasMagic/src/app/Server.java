@@ -26,7 +26,7 @@ public class Server implements Runnable  {
         PrintWriter pw = null;
         OutputStream os = null;
 
-        System.out.println("INO: Server Launching...");
+        System.out.println("INF: Server Launching...");
 
         try {
             server = new ServerSocket(port);
@@ -35,34 +35,7 @@ public class Server implements Runnable  {
             return;
         }
 
-        while(true){
-            try {
-
-            client = server.accept();
-            System.out.println("SERVER: Connection established!");
-            isr = new InputStreamReader(client.getInputStream());
-             reader = new BufferedReader(isr);
-
-            System.out.println("SERVER: Waiting...");
-            String message = reader.readLine();
-            System.out.println("MESSAGE: Recieved");
-
-            String answer = getAnswer(message);
-                pw = new PrintWriter(client.getOutputStream());
-                pw.println(answer);
-                pw.flush();
-                System.out.println("SERVER: MESSAGE SENT");
-
-                //Close handlers
-                pw.close();
-                reader.close();
-                isr.close();
-                client.close();
-            } catch (IOException e) {
-                System.out.println("SERVER: Failed connecting to client");
-            }
-            
-        }
+      
 
      
 

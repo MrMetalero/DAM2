@@ -17,35 +17,35 @@
         <div class="container-fluid g-0 row ">
             <img id="metalsoftLogo" class="col-sm-1 " src="../res/img/MetalsoftLogoTransparent.png" alt="metalsoftLogo">
         
-            <a class="col-2 titulo metalsoftLink " href="index.html">
+            <a  class="col-2 titulo metalsoftLink " href="index.html">
                 Metalsoft
             </a>
 
-            <div class="col-sm-5 col-3 ">
+            <div class="col-sm-5 col-3">
 
             </div>
     
-            <h1 class="col titulo ">
+            <h1  class="col titulo ">
                 Game Dev
             </h1>
          
         </div>
        
 
-        <div class=" container-fluid g-0 row align-items-center">
-            <div class="col-4 buttonNav">
+        <div class=" container-fluid g-0 row  align-items-center">
+            <div class="col-12 col-md-4 p-3 p-sm-0  buttonNav" >
                 <a name="proyectos" class="btn container-fluid btn-primary text-black border-0" href="proyectos.html" role="button">
                     Proyectos
                 </a>
             </div>
-            <div class="col-4 buttonNav">
-                <a name="aboutMe" class="btn container-fluid btn-primary text-black border-0" href="biografia.html" role="button">
+            <div class="col-12 col-md-4 p-3 p-sm-0 buttonNav">
+                <a name="aboutMe" class="btn container-fluid btn-primary  text-black border-0" href="biografia.html" role="button">
                     Biografía
                 </a>
             </div>
 
-            <div class="col-4 buttonNav">
-                <a name="galeria" class="btn container-fluid btn-primary text-black border-0" href="galeria.html" role="button">
+            <div class="col-12 col-md-4 p-3 p-sm-0 buttonNav">
+                <a name="galeria" class="btn container-fluid btn-primary  text-black border-0" href="galeria.html" role="button">
                     Galería
                 </a>
             </div>
@@ -54,20 +54,20 @@
 
 
             
-        <div class=" container-fluid g-0 row align-items-center">
-            <div class="col-4 buttonNav">
+        <div class=" container-fluid g-0 row  align-items-center">
+            <div class="col-12 col-md-4 p-3 p-sm-0 buttonNav">
                 <a name="logros" id="" class="btn container-fluid btn-primary text-black border-0" href="logros.html" role="button">
                     Logros 
                 </a>
             </div>
 
-            <div class="col-4 buttonNav">
-                <a name="favStudios" id="" class="btn container-fluid btn-primary text-black border-0" href="#" role="button">
+            <div class="col-12 col-md-4 p-3 p-sm-0 buttonNav">
+                <a name="favStudios" id="" class="btn container-fluid btn-primary  text-black border-0" href="#" role="button">
                     Favourite Studios 
                 </a>
             </div>
 
-            <div class="col-4 buttonNav">
+            <div class="col-12 col-md-4 p-3 p-sm-0 buttonNav">
                 <a name="contacto" id="" class="btn container-fluid btn-primary text-black border-0" href="contacto.html" role="button">
                     Contacto 
                 </a>
@@ -79,34 +79,128 @@
 
     <!--Contenido Central-->
     <div class="container-fluid row contenidoCentral">
-        <div class="container-fluid card h-100">
-            <div class="card-body row">
-                <!-- Achievement Cards -->
-                <div id="achievementCards" class="card col-12 h-100">
-                    <!-- Achievements will dynamically load here -->
+        
+        <button type="button" class="btn btn-primary buttonLogros col-6 col-xl-3 mx-auto" data-bs-toggle="modal" data-bs-target="#logrosModal">
+            Ver mis Logros
+        </button>
+
+        <!--El modal fade se usa para las transiciones, el tabindex es para que no puedas tabular 
+        al modal o hacerle focus
+        El aria-hidden oculta el modal mientras no esté presionado
+    
+        -->
+
+        <div class="modal fade" id="logrosModal" tabindex="-1" aria-labelledby="logrosModalH5" aria-hidden="true">
+            
+            <div class="modal-dialog modal-dialog-centered modal-xl">
+
+                <div class="modal-content">
+                    <!-- Cabecera del modal -->
+                    <div class="modal-header mx-auto">
+                        <h5 class="modal-title text-center mx-auto" id="logrosModalH5">Logros</h5>
+
+                    </div>
+                    
+        
+                    
+                    <div class="modal-body">
+                        <!-- Tabla -->
+                        <div class="table-responsive">
+
+                            <!--Le he puesto bordecillos a la tabla y el resto de estilo por CSS que queda mejor
+                            He reptido campos porque los catos son ficticios
+                            -->
+                            <table class="table table-bordered ">
+                                <thead class="table-primary">
+                                    <tr>
+                                        <th></th>
+                                        <th>Logro</th>
+                                        <th>Descripción</th>
+                                        <th>Fecha</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Campeón Regional</td>
+                                        <td>Ganador del torneo regional de MTG</td>
+                                        <td>10/10/2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Top 8 Nacional</td>
+                                        <td>Clasificado entre los 8 mejores del torneo nacional</td>
+                                        <td>15/07/2023</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Diseñador de Mazos</td>
+                                        <td>Creación de un mazo con más de 90% de victorias</td>
+                                        <td>01/01/2024</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Diseñador de Mazos</td>
+                                        <td>Creación de un mazo con más de 90% de victorias</td>
+                                        <td>01/01/2024</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Diseñador de Mazos</td>
+                                        <td>Creación de un mazo con más de 90% de victorias</td>
+                                        <td>01/01/2024</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Diseñador de Mazos</td>
+                                        <td>Creación de un mazo con más de 90% de victorias</td>
+                                        <td>01/01/2024</td>
+                                    </tr>
+
+
+                                    <tr></tr>
+                                        <td>7</td>
+                                        <td>Diseñador de Mazos</td>
+                                        <td>Creación de un mazo con más de 90% de victorias</td>
+                                        <td>01/01/2024</td>
+                                    </tr>
+
+
+                                    <tr></tr>
+                                        <td>8</td>
+                                        <td>Diseñador de Mazos</td>
+                                        <td>Creación de un mazo con más de 90% de victorias</td>
+                                        <td>01/01/2024</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+        
+
+                    <!--Para cerrar el modal y no quedarme atrapado-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cierra los logros</button>
+                    </div>
                 </div>
+
             </div>
         </div>
+        
+
+        
     </div>
 
-      <!-- Form for fetching achievements -->
-      <form id="achievementForm" class="mt-4">
-        <div class="container">
-            <div class="mb-3">
-                <input 
-                    type="text" 
-                    id="steamIdInput" 
-                    class="form-control" 
-                    placeholder="Enter Steam ID" 
-                    required
-                >
-            </div>
-            <button type="submit" class="btn btn-primary">Get Achievements</button>
-        </div>
-    </form>
 
 
-    <footer class="container-fluid position-fixed bottom-0  py-3">
+    <footer class="container-fluid position-fixed bottom-0 py-3">
         <div class="container">
             <div class="row justify-content-center align-items-end contenedorRedes" >
 

@@ -62,43 +62,47 @@ function fadeIn(elementos, delay = 300) {
 
 
 
-//MI STEAM API KEY : 7CA27BA0444D3DE930BC7C2619FB466D
-// MI STEAM ID:  76561198096215470
-// Wait for the DOM to fully load before executing
-// Your Steam API key and Steam ID
-// The CORS Anywhere Proxy URL
-const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-// Steam API URL (replace YOUR_STEAM_API_KEY with your actual key)
-const steamId = "76561198096215470";
-const appId = "1245620"; // Cambia por el AppID del juego deseado
-const apiKey = "7CA27BA0444D3DE930BC7C2619FB466D";
 
-const steamApiUrl = `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key=${apiKey}&steamid=${steamId}&appid=${appId}`;
-// Fetching the data via the CORS proxy
-async function fetchAchievements() {
-    try {
-        // Making the fetch request
-        const response = await fetch(proxyUrl + steamApiUrl, {
-            method: 'GET',
-            headers: {
-                'Origin': 'http://127.0.0.1:5501',  // Make sure this matches your local or live URL
-            },
-        });
 
-        // Check if the response is ok
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
+//ESTO ERA PARA INTENTAR PILLAR LOGROS DE STEAM, PERO NO HE CONSEGUIDO ACERLO FUNCIONAR
+// //MI STEAM API KEY : 7CA27BA0444D3DE930BC7C2619FB466D
+// // MI STEAM ID:  76561198096215470
+// // Wait for the DOM to fully load before executing
+// // Your Steam API key and Steam ID
+// // The CORS Anywhere Proxy URL
+// const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 
-        // Parse the response JSON
-        const data = await response.json();
-        console.log(data);  // Handle the achievements data here
+// // Steam API URL (replace YOUR_STEAM_API_KEY with your actual key)
+// const steamId = "76561198096215470";
+// const appId = "1245620"; // Cambia por el AppID del juego deseado
+// const apiKey = "7CA27BA0444D3DE930BC7C2619FB466D";
 
-    } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-    }
-}
+// const steamApiUrl = `https://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v1/?key=${apiKey}&steamid=${steamId}&appid=${appId}`;
+// // Fetching the data via the CORS proxy
+// async function fetchAchievements() {
+//     try {
+//         // Making the fetch request
+//         const response = await fetch(proxyUrl + steamApiUrl, {
+//             method: 'GET',
+//             headers: {
+//                 'Origin': 'http://127.0.0.1:5501',  // Make sure this matches your local or live URL
+//             },
+//         });
 
-// Call the function to fetch achievements
-fetchAchievements();
+//         // Check if the response is ok
+//         if (!response.ok) {
+//             throw new Error('Network response was not ok');
+//         }
+
+//         // Parse the response JSON
+//         const data = await response.json();
+//         console.log(data);  // Handle the achievements data here
+
+//     } catch (error) {
+//         console.error('There was a problem with the fetch operation:', error);
+//     }
+// }
+
+// // Call the function to fetch achievements
+// fetchAchievements();
