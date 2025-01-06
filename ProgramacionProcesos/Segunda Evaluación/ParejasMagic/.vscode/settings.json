@@ -1,7 +1,19 @@
 {
-    "java.project.sourcePaths": ["src"],
+    "java.project.sourcePaths": [
+        "src"
+    ],
     "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
-    ]
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "/Users/davidosuna/Downloads/JSON-java-20240303/**/*.jar",
+            "src/lib/json-20070829-sources.jar",
+            "/Users/davidosuna/Downloads/json-20070829-sources.jar",
+            "/Users/davidosuna/Downloads/json-20240303.jar"
+        ],
+        "exclude": [
+            "/Users/davidosuna/Downloads/JSON-java-20240303/gradle/wrapper/gradle-wrapper.jar"
+        ]
+    },
+    "java.dependency.packagePresentation": "hierarchical"
 }
