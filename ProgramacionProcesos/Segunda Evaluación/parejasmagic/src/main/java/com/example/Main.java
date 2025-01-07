@@ -26,9 +26,9 @@ public class Main {
             hiloServer.start();
             System.out.println("SERVER: Servidor lanzado. Esperando asignación de puerto...");
 
-            // Esperar a que el servidor se inicialice y obtener el puerto asignado
+            // Esperar a que el servidor se inicialice y cuando tenga asignado el puerto espera un poco
             while (servidorCreado.getPort() == -1) {
-                Thread.sleep(100); // Polling corto para esperar la inicialización
+                Thread.sleep(100); // espera para que se inicialize bien por si acaso
             }
 
             int actualPort = servidorCreado.getPort();

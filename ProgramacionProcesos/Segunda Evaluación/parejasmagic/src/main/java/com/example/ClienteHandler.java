@@ -112,7 +112,7 @@ public class ClienteHandler implements Runnable{
         Map<String, JSONObject> foundCards = new HashMap<>();
         File folder = new File(folderPath);
 
-        // List all JSON files in the folder
+        
         File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".json"));
 
         if (files == null) {
