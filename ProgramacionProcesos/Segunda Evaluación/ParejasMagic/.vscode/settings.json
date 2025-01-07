@@ -9,7 +9,8 @@
             "/Users/davidosuna/Downloads/JSON-java-20240303/**/*.jar",
             "src/lib/json-20070829-sources.jar",
             "/Users/davidosuna/Downloads/json-20070829-sources.jar",
-            "/Users/davidosuna/Downloads/json-20240303.jar"
+            "/Users/davidosuna/Downloads/json-20240303.jar",
+            "/home/eddmenlaf/Documents/Repositorios/DAM2/ProgramacionProcesos/Segunda Evaluación/parejasmagic/src/libs/json-20070829-sources.jar"
         ],
         "exclude": [
             "/Users/davidosuna/Downloads/JSON-java-20240303/gradle/wrapper/gradle-wrapper.jar"
