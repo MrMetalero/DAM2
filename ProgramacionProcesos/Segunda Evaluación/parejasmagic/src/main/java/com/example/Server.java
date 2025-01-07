@@ -35,15 +35,20 @@ public class Server implements Runnable  {
             System.out.println("SERVER: Servidor iniciado, esperando conexiones...");
 
             while (true) {
-                client = server.accept();
-                System.out.println("SERVER: Cliente conectado desde: " + client.getInetAddress());
-
-                //Para manejar varios clients
-
-                ClienteHandler clienteHandler = new ClienteHandler(client);
-                Thread clienteThread = new Thread(clienteHandler);
-                clienteThread.start();
+                try {
+                    client = server.accept();
+                    System.out.println("SERVER: Cliente conectado desde: " + client.getInetAddress());
+            
+                    // Crear un nuevo hilo para manejar al cliente
+                    ClienteHandler clienteHandler = new ClienteHandler(client);
+                    Thread clienteThread = new Thread(clienteHandler);
+                    clienteThread.start();
+            
+                } catch (IOException e) {
+                    System.out.println("SERVER: Error aceptando conexión de cliente: " + e.getMessage());
+                }
             }
+            
 
 
 
