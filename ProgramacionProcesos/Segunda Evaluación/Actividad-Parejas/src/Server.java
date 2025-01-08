@@ -16,10 +16,10 @@ public class Server implements Runnable {
         try {
             server = new ServerSocket(port);
             while (true) {
-                // Aceptar conexiones de clientes
+                // Aceptar la conexión
                 Socket client = server.accept();
                 System.out.println("SERVER: Client connected from " + client.getInetAddress());
-                // Manejar cliente en un hilo separado
+                // Lanza los hilos para diferentes conexiones permitiendo que entren varios clients
                 new Thread(() -> handleClient(client)).start();
             }
         } catch (IOException e) {
@@ -31,7 +31,7 @@ public class Server implements Runnable {
         HashMap<Integer, Mazo> mazos = generarMazos(new HashMap<>());
         try (
             BufferedReader reader = new BufferedReader(new InputStreamReader(client.getInputStream()));
-            PrintWriter pw = new PrintWriter(client.getOutputStream(), true) // Auto-flush
+            PrintWriter pw = new PrintWriter(client.getOutputStream(), true) 
         ) {
             // Enviar pregunta al cliente
             pw.println("SERVER: Which deck format are you looking for? \n 1. Modern \n 2. Commander \n Write only the number: ");
