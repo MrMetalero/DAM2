@@ -8,6 +8,7 @@ public class Cliente implements Runnable {
     private final String serverAddress;
     private final int serverPort;
 
+    // Constructor
     public Cliente(String serverAddress, int serverPort) {
         this.serverAddress = serverAddress;
         this.serverPort = serverPort;
@@ -19,39 +20,46 @@ public class Cliente implements Runnable {
              PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
              BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
 
-            // Step 1: Print server welcome message
-            System.out.println("CLIENT: MENSAJE RECIBIDO: " + in.readLine());
+            String username = "ajani";
+            String password = "contadores";
+            String cardRequest = "Ancestor's Chosen, Lightning Bolt, Black Lotus, Serra Angel, Giant Growth, Hill Giant";
 
-            // Step 2: Send username
-            System.out.println("Sending username...");
-            out.println("ajani"); // Send username (changed from out.write to out.println)
+            // Recibir el mensaje de WELCOME
+            System.out.println("CLIENT: " + in.readLine());
 
-            // Step 3: Send password
-            System.out.println("Sending password...");
-            out.println("contadores"); // Send password (changed from out.write to out.println)
+            
+            System.out.println("CLIENT: Sending username...");
+            out.println(username);
 
-            // Step 4: Receive login response
+            
+            System.out.println("CLIENT: " + in.readLine());
+
+            
+            System.out.println("CLIENT: Sending password...");
+            out.println(password);
+
+            
             String loginResponse = in.readLine();
-            System.out.println("CLIENT: MENSAJE RECIBIDO: " + loginResponse);
+            System.out.println("CLIENT: " + loginResponse);
 
             if (loginResponse.contains("ACCESO PERMITIDO")) {
-                // Step 5: Server requests card names
-                System.out.println("CLIENT: MENSAJE RECIBIDO: " + in.readLine());
+                System.out.println("CLIENT: " + in.readLine());
 
-                // Step 6: Send card names
-                System.out.println("Sending card request...");
-                out.println("Ancestor's Chosen, Lightning Bolt, Black Lotus");
+                System.out.println("CLIENT: Sending card request...");
+                out.println(cardRequest);
 
-                // Step 7: Receive server response with card data
-                String serverResponse = in.readLine();
-                System.out.println("CLIENT: MENSAJE RECIBIDO: " + serverResponse);
-
+                String serverResponse;
+                while ((serverResponse = in.readLine()) != null) {
+                    System.out.println("CLIENT: " + serverResponse);
+                }
             } else {
-                System.out.println("Login failed. Exiting client.");
+                System.out.println("CLIENT: Login failed. Exiting...");
             }
 
         } catch (IOException e) {
-            System.err.println("Error communicating with server: " + e.getMessage());
+            System.err.println("CLIENT: Error communicating with server: " + e.getMessage());
         }
     }
+
+   
 }

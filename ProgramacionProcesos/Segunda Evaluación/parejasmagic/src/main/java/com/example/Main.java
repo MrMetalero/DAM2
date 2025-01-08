@@ -3,11 +3,12 @@ package com.example;
 import java.util.Map;
 
 public class Main {
-    final private static String host = "127.0.0.1";
-    final private static int port = 0; // Use 0 to let the OS assign an available port
+    // Dirección y puerto
+    private static final String HOST = "127.0.0.1";
+    private static final int PORT = 1337; // 0 para que el sistema operativo asigne un puerto libre
 
     // Cuentas para el login
-    final static Map<String, String> users = Map.of(
+    static final Map<String, String> users = Map.of(
         "ajani", "contadores",
         "ivan", "valencia",
         "dani", "tarkov",
@@ -17,25 +18,29 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            // Create server with port 0 (random port assigned by OS)
-            Server servidorCreado = new Server(port);
+            // Crear servidor con puerto asignado automáticamente
+            Server servidorCreado = new Server(PORT);
             Thread hiloServer = new Thread(servidorCreado);
 
-            // Start the server thread
+            // Iniciar el servidor
             hiloServer.start();
+            System.out.println("SERVER: Servidor lanzado. Esperando asignación de puerto...");
 
-            // Wait for the server to initialize and get the actual port
-            Thread.sleep(1000); // Small delay to ensure the server is running
+            // Esperar a que el servidor se inicialice y cuando tenga asignado el puerto espera un poco
+            while (servidorCreado.getPort() == -1) {
+                Thread.sleep(100); // espera para que se inicialize bien por si acaso
+            }
 
-            int actualPort = servidorCreado.getPort(); // Get the assigned port
+            int actualPort = servidorCreado.getPort();
+            System.out.println("SERVER: Servidor iniciado en el puerto: " + actualPort);
 
-            // Start the client with the actual server port
-            Cliente cliente1 = new Cliente(host, actualPort);
-            Thread hiloCliente = new Thread(cliente1);
+            // Crear y lanzar un cliente de prueba
+            Cliente clientePrueba = new Cliente(HOST, actualPort);
+            Thread hiloCliente = new Thread(clientePrueba);
             hiloCliente.start();
 
         } catch (InterruptedException e) {
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("MAIN: Error al inicializar el servidor o cliente: " + e.getMessage());
         }
     }
 }

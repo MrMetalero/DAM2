@@ -51,61 +51,68 @@ public class ClienteHandler implements Runnable{
   }
 
   @Override
-  public void run(){
-
-    try {
-      System.out.println("SERVER: Bienvenido al server, introduce tu nombre de usuario...");
-      String username = reader.readLine();
-      System.out.println("SERVER: Bienvenido al server, introduce tu contraseña...");
-      String password = reader.readLine();
-
-      if (Main.users.containsKey(username) && Main.users.get(username).equals(password)) {
-        System.out.println("SERVER: Login completado. ACCESO PERMITIDO");
-
-      }else{
-        System.out.println("SERVER: Login fallido. ACCESO DENEGADO");
-        return; //Para que deje de ejecutarse el hilo si no se hace login
-      }
-
-
-      // Request cards
-      pw.println("SERVER: Por favor, introduzca los nombres de las cartas separadas por comas:");
-      String cartasSolicitadas = reader.readLine();
-      String[] nombresCartas = cartasSolicitadas.split(",");
-
-      // Search for cards
-      Map<String, JSONObject> foundCards = searchCards(nombresCartas, "resources");
-
-      // Send results to the client
-      if (foundCards.isEmpty()) {
-        pw.println("SERVER: No se encontraron cartas con esos nombres.");
-      } else {
-        pw.println("SERVER: Cartas encontradas:");
-        for (JSONObject carta : foundCards.values()) {
-          pw.println(carta.toString(2)); // Pretty-print JSON object
-        }
-      }
-
-
-
-    } catch (Exception e) {
-      System.out.println("SERVER: Error con el cliente " + e.getMessage());
-    } finally {
-      try {
-        clientSocket.close();
+  public void run() {
+      try (
+          InputStream is = clientSocket.getInputStream();
+          InputStreamReader isr = new InputStreamReader(is);
+          BufferedReader reader = new BufferedReader(isr);
+          PrintWriter pw = new PrintWriter(clientSocket.getOutputStream(), true);
+          OutputStream os = clientSocket.getOutputStream();
+      ) {
+          pw.println("SERVER: Bienvenido al servidor, introduce tu nombre de usuario...");
+          String username = reader.readLine();
+          pw.println("SERVER: Introduce tu contraseña...");
+          String password = reader.readLine();
+  
+          if (username == null || password == null) {
+              pw.println("SERVER: Error: Entrada nula recibida.");
+              return;
+          }
+  
+          if (Main.users.containsKey(username) && Main.users.get(username).equals(password)) {
+              pw.println("SERVER: Login completado. ACCESO PERMITIDO");
+          } else {
+              pw.println("SERVER: Login fallido. ACCESO DENEGADO");
+              return;
+          }
+  
+          pw.println("SERVER: Por favor, introduzca los nombres de las cartas separadas por comas:");
+          String cartasSolicitadas = reader.readLine();
+  
+          if (cartasSolicitadas == null || cartasSolicitadas.trim().isEmpty()) {
+              pw.println("SERVER: Error: No se recibieron nombres de cartas.");
+              return;
+          }
+  
+          String[] nombresCartas = cartasSolicitadas.split(",");
+          Map<String, JSONObject> foundCards = searchCards(nombresCartas, "src/main/resources");
+  
+          if (foundCards.isEmpty()) {
+              pw.println("SERVER: No se encontraron cartas con esos nombres.");
+          } else {
+              pw.println("SERVER: Cartas encontradas:");
+              for (JSONObject carta : foundCards.values()) {
+                  pw.println(carta.toString(2));
+              }
+          }
+  
       } catch (IOException e) {
-        System.err.println("Error al cerrar la conexión con el cliente: " + e.getMessage());
+          System.out.println("SERVER: Error manejando cliente " + e.getMessage());
+      } finally {
+          try {
+              clientSocket.close();
+          } catch (IOException e) {
+              System.err.println("Error al cerrar el cliente: " + e.getMessage());
+          }
       }
-    }
-
-
   }
+  
 
   private Map<String, JSONObject> searchCards(String[] cardNames, String folderPath) throws IOException {
         Map<String, JSONObject> foundCards = new HashMap<>();
         File folder = new File(folderPath);
 
-        // List all JSON files in the folder
+        
         File[] files = folder.listFiles((dir, name) -> name.toLowerCase().endsWith(".json"));
 
         if (files == null) {
