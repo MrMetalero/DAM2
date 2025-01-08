@@ -26,7 +26,7 @@ public class Main {
             hiloServer.start();
             System.out.println("SERVER: Servidor lanzado. Esperando asignación de puerto...");
 
-            // Esperar a que el servidor se inicialice y cuando tenga asignado el puerto espera un poco
+            // Esperar a que el servidor se inicialice y pille puerto
             while (servidorCreado.getPort() == -1) {
                 Thread.sleep(100); // espera para que se inicialize bien por si acaso
             }
@@ -35,9 +35,9 @@ public class Main {
             System.out.println("SERVER: Servidor iniciado en el puerto: " + actualPort);
 
             // Crear y lanzar un cliente de prueba
-            Cliente clientePrueba = new Cliente(HOST, actualPort);
-            Thread hiloCliente = new Thread(clientePrueba);
-            hiloCliente.start();
+            // Cliente clientePrueba = new Cliente(HOST, actualPort);
+            // Thread hiloCliente = new Thread(clientePrueba);
+            // hiloCliente.start();
 
         } catch (InterruptedException e) {
             System.err.println("MAIN: Error al inicializar el servidor o cliente: " + e.getMessage());
