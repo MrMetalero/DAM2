@@ -35,9 +35,9 @@ public class Main {
             System.out.println("SERVER: Servidor iniciado en el puerto: " + actualPort);
 
             // Crear y lanzar un cliente de prueba
-            // Cliente clientePrueba = new Cliente(HOST, actualPort);
-            // Thread hiloCliente = new Thread(clientePrueba);
-            // hiloCliente.start();
+            Cliente clientePrueba = new Cliente(HOST, actualPort);
+            Thread hiloCliente = new Thread(clientePrueba);
+            hiloCliente.start();
 
         } catch (InterruptedException e) {
             System.err.println("MAIN: Error al inicializar el servidor o cliente: " + e.getMessage());
