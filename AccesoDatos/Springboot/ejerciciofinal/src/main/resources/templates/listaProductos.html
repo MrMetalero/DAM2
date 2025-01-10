@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Final</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 10px;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            margin: 10px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button a {
+            text-decoration: none;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #2874a6;
+        }
+
+        .no-productos {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 th:text="${title}"></h1>
+
+    <!-- Botones para navegación -->
+    <button><a href="/Categorias">Ver Categorías</a></button>
+    <button><a href="/newProducto">Añadir Producto</a></button>
+
+    <!-- Tabla de productos -->
+    <div th:if="${productos.size() > 0}">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio (Sin IVA)</th>
+                    <th>Precio (Con IVA)</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto : ${productos}">
+                    <td th:text="${producto.id}"></td>
+                    <td th:text="${producto.nombre}"></td>
+                    <td th:text="${producto.tipoProducto}"></td>
+                    <td th:text="${producto.precio}"></td>
+                    <td th:text="${producto.precioConImpuesto}"></td>
+                    <td>
+                        <a th:href="@{/modificarProducto/{id}(id=${producto.id})}">Modificar</a> |
+                        <a th:href="@{/borrarProducto/{id}(id=${producto.id})}">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Mensaje si no hay productos -->
+    <div th:if="${productos.size() == 0}" class="no-productos">
+        <p>No hay productos registrados en el sistema.</p>
+    </div>
+</body>
+</html>
