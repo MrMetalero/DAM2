@@ -20,6 +20,26 @@
             margin-bottom: 20px;
         }
 
+
+        button {
+            margin: 10px 0;
+            padding: 10px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button a {
+            text-decoration: none;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #2874a6;
+        }
+
         table {
             width: 80%;
             margin: 0 auto;
@@ -69,5 +89,7 @@
     <div th:if="${categorias.size() == 0}">
         <p>No hay categorías disponibles.</p>
     </div>
+
+    <button><a href="/Productos">volver a Productos</a></button>
 </body>
 </html>

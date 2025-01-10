@@ -14,19 +14,19 @@ import com.example.springboot.ejerciciofinal.aplicacion.repositories.ProductType
 @Service
 public class ImplServicioProducto implements ServicioProducto{
     private ProductTypeRepositoryImpl ptr; 
-    private ProductRepository pr;
+    private ProductRepository productRepository;
 
     public ImplServicioProducto(ProductRepositoryImpl repository, ProductTypeRepositoryImpl ptr){
-        this.pr = repository;
+        this.productRepository = repository;
         this.ptr = ptr;
     }
     
     public List<Producto> findAll(){
-        return pr.findAll();
+        return productRepository.findAll();
     }
 
     public Producto findById(Long id){
-        return pr.findById(id);
+        return productRepository.findById(id);
     }
 
     @Override
@@ -36,11 +36,11 @@ public class ImplServicioProducto implements ServicioProducto{
             precio != null &&
             idCategoria != null) {
 
-            pr.findAll().add(new Producto(id, nombre, precio, idCategoria, ptr.findAll()));
-            Collections.sort(pr.findAll(), Comparator.comparing(Producto::getId));
+            productRepository.findAll().add(new Producto(id, nombre, precio, idCategoria, ptr.findAll()));
+            Collections.sort(productRepository.findAll(), Comparator.comparing(Producto::getId));
         }
 
-        return pr;
+        return productRepository;
     }
 
     @Override
@@ -49,27 +49,27 @@ public class ImplServicioProducto implements ServicioProducto{
         Producto productoModificado = null;
 
         
-            for (Producto pr : pr.findAll()) {
-                if (pr.getId().equals(id)) {
-                    productoModificado = pr;
+            for (Producto productRepository : productRepository.findAll()) {
+                if (productRepository.getId().equals(id)) {
+                    productoModificado = productRepository;
                     break;
                 }
             }
 
             if (productoModificado != null) {
-                pr.findAll().remove(productoModificado);
-                pr.findAll().add(new Producto(id, nombre, precio, idCategoria, ptr.findAll()));
-                Collections.sort(pr.findAll(), Comparator.comparing(Producto::getId));
+                productRepository.findAll().remove(productoModificado);
+                productRepository.findAll().add(new Producto(id, nombre, precio, idCategoria, ptr.findAll()));
+                Collections.sort(productRepository.findAll(), Comparator.comparing(Producto::getId));
             }
         }
-        return pr;
+        return productRepository;
     }
 
     @Override
     public ProductRepository delete(Long id) {
-        if (id != null && pr.findAll() != null) {
-            pr.findAll().removeIf(producto -> producto.getId().equals(id));
+        if (id != null && productRepository.findAll() != null) {
+            productRepository.findAll().removeIf(producto -> producto.getId().equals(id));
         }
-        return pr;
+        return productRepository;
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio Final: Nuevo Producto</title>
+    <title>Nuevo Producto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,12 +13,13 @@
         h2 {
             font-size: 24px;
             color: #333;
+            text-align: center;
         }
 
         form {
             width: 400px;
             margin: 20px auto;
-            padding: 20px;
+            padding: 50px;
             border: 1px solid #ccc;
             border-radius: 8px;
             background-color: #f9f9f9;
@@ -47,6 +48,7 @@
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            
         }
 
         button:hover {
@@ -55,24 +57,36 @@
     </style>
 </head>
 <body>
-    <!-- Formulario -->
-    <h2>Agregar Nuevo Producto</h2>
+   
+    <h2>PRODUCTO NUEVO</h2>
     <form th:action="@{/newProducto}" method="post">
         <label for="id">ID:</label>
-        <input type="text" id="id" name="id" placeholder="ID"><br><br>
-
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Nombre"><br><br>
-
-        <label for="precio">Precio:</label>
-        <input type="precio" id="precio" name="precio" placeholder="Precio"><br><br>
+        <input type="text" id="id" name="id" placeholder="ID">
+        
+        <br>
 
         <label for="idCategoria">ID Categoria:</label>
         <select id="idCategoria" name="idCategoria">
             <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
-        </select><br><br>
+        </select>
+        <br>
+        <br>
+
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+        <br>
+        <br>
+
+        <label for="precio">Precio:</label>
+        <input type="precio" id="precio" name="precio" placeholder="Precio">
+        <br>
+        <br>
+
+        
 
         <button type="submit">Agregar Producto</button>
     </form>
+
+    <button><a href="/Productos">volver a Productos</a></button>
 </body>
 </html>

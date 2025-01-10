@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.example.springboot.ejerciciofinal.aplicacion.models.Producto;
 import com.example.springboot.ejerciciofinal.aplicacion.models.TipoProducto;
@@ -23,6 +24,11 @@ public class UserController {
     ImplServicioProducto sp = new ImplServicioProducto(pr, ptr);
     List<TipoProducto> categorias = ptr.findAll();
     List<Producto> productos = pr.findAll();
+
+    @GetMapping("/")
+    public RedirectView redirectToIndex() {
+        return new RedirectView("/Productos");
+    }
 
     @GetMapping("/Categorias")
     public String listarTipos(Model model) {
@@ -47,10 +53,10 @@ public class UserController {
     @PostMapping("/newProducto")
     public String agregarProducto(
         Model model,
-        @RequestParam(value = "id", required = false) Long id,
-        @RequestParam(value = "nombre", required = false) String nombre,
-        @RequestParam(value = "precio", required = false) Long precio,
-        @RequestParam(value = "idCategoria", required = false) Long idCategoria
+        @RequestParam( required = false) Long id,
+        @RequestParam( required = false) String nombre,
+        @RequestParam( required = false) Long precio,
+        @RequestParam( required = false) Long idCategoria
     ) {
         productos = sp.create(id, nombre, precio, idCategoria).findAll();
 
@@ -85,17 +91,5 @@ public class UserController {
         return "modificarProducto";
     }
 
-    @PostMapping("/modificarProducto/{id}")
-    public String modificarProducto(
-        @PathVariable Long id,
-        @RequestParam(value = "nombre", required = false) String nombre,
-        @RequestParam(value = "precio", required = false) Long precio,
-        @RequestParam(value = "idCategoria", required = false) Long idCategoria,
-        Model model) {
-        productos = sp.update(id, nombre, precio, idCategoria).findAll();
-
-        model.addAttribute("title", "Lista de Productos");
-        model.addAttribute("productos", productos);
-        return "listaProductos";
-    }
+    
 }

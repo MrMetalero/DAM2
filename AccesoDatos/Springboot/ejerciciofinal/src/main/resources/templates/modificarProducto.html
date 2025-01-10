@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ejercicio Final: Modificar Producto</title>
+    <title>Modificar Producto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,12 +13,13 @@
         h2 {
             font-size: 24px;
             color: #333;
+            text-align: center;
         }
 
         form {
             width: 400px;
             margin: 20px auto;
-            padding: 20px;
+            padding: 50px;
             border: 1px solid #ccc;
             border-radius: 8px;
             background-color: #f9f9f9;
@@ -55,7 +56,7 @@
     </style>
 </head>
 <body>
-    <!-- Formulario -->
+    
     <h2>Modificar Producto</h2>
     <form th:action="@{/modificarProducto/{id}(id=${producto.id})}" method="post">
         <label for="nombre">Nombre:</label>
@@ -69,7 +70,9 @@
             <option th:each="categoria : ${categorias}" th:value="${categoria.id}" th:text="${categoria.nombre}"></option>
         </select><br><br>
 
-        <button type="submit">Confirmar Modificación</button>
+        <button type="submit">Confirmar cambios</button>
     </form>
+
+    <button><a href="/Productos">volver a Productos</a></button>
 </body>
 </html>
