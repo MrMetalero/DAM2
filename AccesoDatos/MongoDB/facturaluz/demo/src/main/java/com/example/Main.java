@@ -43,16 +43,17 @@ public class Main {
 
         Mongo mongoDataBase = new Mongo();
         mongoDataBase.mongoConnection();
+        //COMENTAR Y DESCOMENTAR LAS DEMOSTRACIONES
         //List<Integer> integerList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
         
         //Nombre de la colección a insertar
-        //String currentDate = "2025-04";
+        String currentDate = "2025-04";
 
-        //mongoDataBase.insertDummyData(1000, currentDate);  
+        mongoDataBase.insertDummyData(1000, currentDate);  
 
         //mongoDataBase.deleteHourOneByName("contratos_04_2025","Jose2266");
         //mongoDataBase.deleteDocumentByName("contratos_04_2025","Jose1718");
-        //mongoDataBase.insertClient("contratos_04_2025","Javi","Maceda");
+        //mongoDataBase.insertClient("contratos_05_2025","Javi","Maceda");
         //mongoDataBase.printDocumentsByName("contratos_04_2025","Jose 20290");
         //mongoDataBase.printDocumentsByNameRegex("contratos_04_2025","Jose [1]");
      

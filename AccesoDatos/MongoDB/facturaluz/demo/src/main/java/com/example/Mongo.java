@@ -4,10 +4,14 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.InsertOneModel;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
+import com.mongodb.client.model.WriteModel;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
+
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Mongo {
 
@@ -23,7 +28,7 @@ public class Mongo {
     public MongoDatabase database;
 
     public void mongoConnection() {
-        String connectionString = "mongodb://mati:mati@localhost:27017";
+        String connectionString = "mongodb://localhost:27017";
 
         if (mongoClient == null) {
             try {
@@ -91,7 +96,7 @@ public class Mongo {
 
         collection.updateMany(
                 Filters.and(
-                        Filters.eq("cliente.nombre", nameOfClient) // Filtra por el nombre del cliente
+                        Filters.eq("cliente.nombre", nameOfClient) 
                 ),
                 Updates.unset("consumos.dias.0.hora1") // Elimina la "hora 9" en el día 1
         );
@@ -102,7 +107,7 @@ public class Mongo {
 
         collection.deleteMany(
                 Filters.and(
-                        Filters.eq("cliente.nombre", nameOfClient) // Filtra por el nombre del cliente
+                        Filters.eq("cliente.nombre", nameOfClient) 
                 ));
     }
 
@@ -112,7 +117,7 @@ public class Mongo {
         System.out.println("\nCOINCIDENCIAS:");
         for (Document document : collection.find(
                 Filters.or(
-                        Filters.eq("cliente.nombre", nameOfClient) // Filtra por el nombre del cliente
+                        Filters.eq("cliente.nombre", nameOfClient) 
                 ))) {
             System.out.println(document.toString() + "\n");
         }
@@ -132,46 +137,77 @@ public class Mongo {
     }
 
     
-    //TODO: todavia no sumo los valores de cada día
+ 
     public void calculateMonthlyBills(String collectionName) {
-        
-        MongoCollection<Document> collection = database.getCollection(collectionName);
-    
-        for (Document document : collection.find()) {
-            Object consumosObj = document.get("consumos");
-    
-            if (consumosObj instanceof Document consumos) {
-                Object diasObj = consumos.get("dias");
-    
-                //Esto lo he tenido que buscar porque no me queria pillar el parse a document
-                if (diasObj instanceof List<?> dias) {
-                    System.out.println("Document ID: " + document.getObjectId("_id"));
+    // Start timing
+    long startTime = System.nanoTime();
 
-                    for (int dayIndex = 0; dayIndex < dias.size(); dayIndex++) {
-                        Object diaObj = dias.get(dayIndex);
-                        Double monthlyTotal = 0.0;
-    
-                        if (diaObj instanceof Document dia) {
-                            Double dailyTotal = 0.0;
-    
-                            for (int i = 1; i <= 24; i++) {
-                                String key = "hora" + i;
-                                Double value = Double.parseDouble(dia.getString(key).replace(",", ".")) ; 
-                                dailyTotal += value;
-                            }
-    
-                            // formateado a 2 decimales mejor
-                            //System.out.println("Total consumption for day " + (dayIndex + 1) + ": " + String.format("%.2f", dailyTotal) );
-                            monthlyTotal += dailyTotal;
+    String datePart = collectionName.substring(collectionName.indexOf("_") + 1);
+    String newCollectionName = "facturas_" + datePart;
+
+    MongoCollection<Document> collection = database.getCollection(collectionName);
+    MongoCollection<Document> billsCollection = database.getCollection(newCollectionName);
+
+    // Hace falta usar esto para las inserciones en bulk
+    List<WriteModel<Document>> bulkOperations = new ArrayList<>();
+
+    for (Document clientDocument : collection.find()) {
+        // Document cliente = clientDocument.get("cliente", Document.class) SIN DOCUMENT.CLASS NO PUEDE SABER QUE TIPO ES
+        Document cliente = clientDocument.get("cliente", Document.class);
+        String clientName = cliente != null ? cliente.getString("nombre") : "Unknown Client";
+
+        Document contrato = clientDocument.get("contrato", Document.class);
+        String contractId = contrato != null ? contrato.getString("id") : "Unknown Contract";
+
+        Document consumos = clientDocument.get("consumos", Document.class);
+
+        double monthlyTotal = 0.0;
+
+        if (consumos != null) {
+            List<Document> dias = consumos.getList("dias", Document.class);
+
+            if (dias != null) {
+                for (Document dailyConsumption : dias) {
+                    for (int hour = 1; hour <= 24; hour++) {
+                        String hourKey = "hora" + hour;
+                        String hourValueStr = dailyConsumption.getString(hourKey);
+
+                        if (hourValueStr != null && !hourValueStr.isEmpty()) {
+                            double hourValue = Double.parseDouble(hourValueStr.replace(",", "."));
+                            monthlyTotal += hourValue;
                         }
-                        
-                        System.out.println("Total consumption for day " + (dayIndex + 1) + ": " + String.format("%.2f", monthlyTotal) );
-
                     }
                 }
             }
         }
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        String formattedMonthlyTotal = df.format(monthlyTotal);
+
+        Factura factura = new Factura(clientName, contractId, monthlyTotal);
+
+        Document monthlyBill = new Document()
+                .append("cliente", factura.getCliente())
+                .append("contrato", factura.getContrato())
+                .append("total_mensual", factura.getTotalMensual());
+
+        bulkOperations.add(new InsertOneModel<>(monthlyBill));
+
+        System.out.println("Client: " + clientName + ": " + formattedMonthlyTotal);
     }
+
+    // Se hacen las inserts en bulk
+    if (!bulkOperations.isEmpty()) {
+        billsCollection.bulkWrite(bulkOperations);
+    }
+
+    long endTime = System.nanoTime();
+    long duration = (endTime - startTime) / 1000000; 
+
+    System.out.println("saved in collection: " + newCollectionName);
+    System.out.println("Time taken:: " + duration + " ms  :)");
+}
+
     
     
     
@@ -195,19 +231,17 @@ public class Mongo {
         Document hoursList = new Document();
         Random random = new Random();
         for (int hour = 1; hour <= 24; hour++) {
-            hoursList.append("hora" + hour, random.nextInt(3));
+            hoursList.append("hora" + hour, random.nextDouble(0,2));
         }
 
         List<Document> dias = new ArrayList<>();
         List<Document> dayInfo = new ArrayList<>();
 
-        // añade por cada día un documento de las horas con sus valores
         for (int day = 1; day <= DummyDataGenerator.getDaysInMonth(collectionName.substring(11)); day++) {
             dayInfo.add(hoursList);
 
         }
 
-        // añade por cada día un documento de las horas con sus valores
         for (Document document : dayInfo) {
             dias.add(document);
         }

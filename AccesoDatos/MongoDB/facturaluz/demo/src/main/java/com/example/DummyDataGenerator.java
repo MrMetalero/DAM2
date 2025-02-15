@@ -17,7 +17,7 @@ public class DummyDataGenerator {
             Document contract = new Document();
 
             Document cliente = new Document();
-            cliente.append("nombre", "Jose " + generatorIdName.getNextID());
+            cliente.append("nombre", "Jose" + generatorIdName.getNextID());
             cliente.append("apellido", "ApellidoJose");
             contract.append("cliente", cliente);
 
