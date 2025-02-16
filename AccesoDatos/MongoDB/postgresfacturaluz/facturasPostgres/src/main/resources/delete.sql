@@ -26,3 +26,5 @@ DROP TABLE consumos_diciembre;
 DROP TABLE consumos;
 DROP TABLE contratos;
 DROP TABLE clientes;
+
+DELETE  FROM clientes ;

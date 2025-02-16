@@ -7,6 +7,8 @@ import org.bson.Document;
 
 public class DummyDataGenerator {
     public static List<Document> generateDummyData(int numberOfContracts, String date) {
+         // Start timing
+        long startTime = System.nanoTime();
         RandomNumberGenerator generatorIdName = new RandomNumberGenerator(1, 100000);
         RandomNumberGenerator generatorIdContract = new RandomNumberGenerator(1, 100000);
 
@@ -28,30 +30,31 @@ public class DummyDataGenerator {
 
             List<Document> dias = new ArrayList<>();
 
-            // Generate a new set of hourly values for each day
+          
             for (int day = 1; day <= daysInMonth; day++) {
-                Document hoursList = new Document(); // Create a new object for each day
+                Document hoursList = new Document(); 
 
                 for (int hour = 1; hour <= 24; hour++) {
                     Double valorHora = new Random().nextDouble(0, 0.20);
                     hoursList.append("hora" + hour, String.format("%.2f", valorHora));
                 }
 
-                dias.add(hoursList); // Add the unique hours list for the day
+                dias.add(hoursList); 
             }
 
-            // Append all days under "consumos"
             Document consumos = new Document();
             consumos.append("dias", dias);
             contract.append("consumos", consumos);
 
             contractsList.add(contract);
         }
-
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime) / 1000000; 
+    
+        System.out.println("Time taken:: " + duration + " ms  Mongito");
         return contractsList;
     }
 
-    // Utility method to get the number of days in a month from a date string
     public static int getDaysInMonth(String date) {
         int returnValue = 0;
 

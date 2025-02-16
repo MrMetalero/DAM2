@@ -1,4 +1,4 @@
--- Active: 1726053967925@@127.0.0.1@5432@facturaluz
+-- Active: 1727983525436@@127.0.0.1@5432@facturaluz
 
 
 CREATE TABLE clientes (
@@ -16,7 +16,6 @@ CREATE TABLE contratos (
 
 CREATE TABLE consumos_enero (
     cliente_id INTEGER,
-    fecha_renovacion INTEGER
     dia INTEGER NOT NULL CHECK (dia BETWEEN 1 AND 31),
     horas DOUBLE PRECISION[] NOT NULL, 
     FOREIGN KEY (cliente_id) REFERENCES contratos(cliente_id) ON DELETE CASCADE,

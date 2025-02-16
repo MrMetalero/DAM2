@@ -1,60 +1,76 @@
 package com.example;
 
 import java.sql.*;
-import java.sql.Date;
 import java.time.YearMonth;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class DummyDataGenerator {
-   
+
     public static void generateDummyData(Connection connection, int numberOfContracts, String date) throws SQLException {
+        long startTime = System.currentTimeMillis();
         Random random = new Random();
         int daysInMonth = getDaysInMonth(date);
-        RandomNumberGenerator generator = new RandomNumberGenerator(1, 100000);
+        int batchSize = 1000;
+        
+        String insertClienteSQL = "INSERT INTO clientes (nombre, apellido) VALUES (?, ?)";
+        String insertContratoSQL = "INSERT INTO contratos (cliente_id, fecha_renovacion) VALUES (?, ?)";
+        String insertConsumosSQL = "INSERT INTO consumos (cliente_id, month, dia, horas) VALUES (?, ?, ?, ?)";
 
-        long startTime = System.nanoTime();
+        List<Integer> clienteIds = new ArrayList<>();
 
-        for (int i = 0; i < numberOfContracts; i++) {
+        try (PreparedStatement pstmtCliente = connection.prepareStatement(insertClienteSQL, Statement.RETURN_GENERATED_KEYS);
+             PreparedStatement pstmtContrato = connection.prepareStatement(insertContratoSQL);
+             PreparedStatement pstmtConsumos = connection.prepareStatement(insertConsumosSQL)) {
 
-            String clienteNombre = "Jose" + (generator.getNextID());
-            String clienteApellido = "ApellidoJose";
-            String insertClienteSQL = "INSERT INTO clientes (nombre, apellido) VALUES (?, ?) RETURNING id";
-            PreparedStatement clienteStmt = connection.prepareStatement(insertClienteSQL);
-            clienteStmt.setString(1, clienteNombre);
-            clienteStmt.setString(2, clienteApellido);
-            ResultSet clienteRs = clienteStmt.executeQuery();
-            clienteRs.next();
-            int clienteId = clienteRs.getInt(1);
+            for (int i = 0; i < numberOfContracts; i++) {
+                String nombre = "Jose" + random.nextInt(100000);
+                String apellido = "ApellidoJose";
 
+                pstmtCliente.setString(1, nombre);
+                pstmtCliente.setString(2, apellido);
+                pstmtCliente.addBatch();
 
-            String insertContratoSQL = "INSERT INTO contratos (cliente_id, fecha_renovacion) VALUES (?, ?)";
-            PreparedStatement contratoStmt = connection.prepareStatement(insertContratoSQL);
-            contratoStmt.setInt(1, clienteId);
-            contratoStmt.setDate(2, Date.valueOf(date + "-01")); 
-            contratoStmt.executeUpdate();
+                if ((i + 1) % batchSize == 0 || i == numberOfContracts - 1) {
+                    pstmtCliente.executeBatch();
 
-            // para consumos
-            for (int day = 1; day <= daysInMonth; day++) {
-                Integer[] horas = new Integer[24];
-                for (int hour = 0; hour < 24; hour++) {
-                    horas[hour] = random.nextInt(5000);
+                    // Pilla claves generadas para poder ir introduciendo el resto de elementos
+                    // con el id de el cliente concreto que le toca en cada iteración
+                    try (ResultSet generatedKeys = pstmtCliente.getGeneratedKeys()) {
+                        while (generatedKeys.next()) {
+                            clienteIds.add(generatedKeys.getInt(1));
+                        }
+                    }
                 }
-
-                // el array dentro de consumos
-                String insertConsumoSQL = "INSERT INTO consumos_abril (cliente_id, fecha_renovacion, dia, horas) VALUES (?, ?, ?, ?)";
-                PreparedStatement consumoStmt = connection.prepareStatement(insertConsumoSQL);
-                consumoStmt.setInt(1, clienteId);
-                consumoStmt.setDate(2, Date.valueOf(date + "-01"));
-                consumoStmt.setInt(3, day);
-                consumoStmt.setArray(4, connection.createArrayOf("INTEGER", horas));
-                consumoStmt.executeUpdate();
             }
 
-            long endTime = System.nanoTime();
-            long duration = (endTime - startTime) / 1000000; 
-            System.out.println("Total time to generate and insert dummy data: " + duration + " ms");
-        
+            for (int clienteId : clienteIds) {
+                pstmtContrato.setInt(1, clienteId);
+                pstmtContrato.setDate(2, java.sql.Date.valueOf(date + "-01"));
+                pstmtContrato.addBatch();
+            }
+            pstmtContrato.executeBatch();
+
+            for (int clienteId : clienteIds) {
+                for (int day = 1; day <= daysInMonth; day++) {
+                    Double[] horas = new Double[24];
+                    for (int hour = 0; hour < 24; hour++) {
+                        horas[hour] = random.nextDouble(0.0, 0.2);
+                    }
+
+                    pstmtConsumos.setInt(1, clienteId);
+                    pstmtConsumos.setInt(2, Integer.parseInt(date.substring(5, 7)));
+                    pstmtConsumos.setInt(3, day);
+                    pstmtConsumos.setArray(4, connection.createArrayOf("float8", horas));
+                    pstmtConsumos.addBatch();
+                }
+            }
+            pstmtConsumos.executeBatch();
         }
+
+        long endTime = System.currentTimeMillis();
+        System.out.println("Total time taken for data generation: " + (endTime - startTime) + " ms");
     }
 
     public static int getDaysInMonth(String date) {

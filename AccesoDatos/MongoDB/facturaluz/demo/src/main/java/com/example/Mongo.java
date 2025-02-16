@@ -139,7 +139,6 @@ public class Mongo {
     
  
     public void calculateMonthlyBills(String collectionName) {
-    // Start timing
     long startTime = System.nanoTime();
 
     String datePart = collectionName.substring(collectionName.indexOf("_") + 1);
@@ -193,7 +192,6 @@ public class Mongo {
 
         bulkOperations.add(new InsertOneModel<>(monthlyBill));
 
-        System.out.println("Client: " + clientName + ": " + formattedMonthlyTotal);
     }
 
     // Se hacen las inserts en bulk
