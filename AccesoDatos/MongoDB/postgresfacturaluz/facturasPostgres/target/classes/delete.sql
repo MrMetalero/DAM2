@@ -1,29 +1,29 @@
 
-DROP TABLE consumos_enero;
+DROP TABLE facturas_jan;
 
-DROP TABLE consumos_febrero;
+DROP TABLE facturas_feb;
 
-DROP TABLE consumos_marzo;
+DROP TABLE facturas_mar;
 
-DROP TABLE consumos_abril;
+DROP TABLE facturas_apr;
 
-DROP TABLE consumos_mayo;
+DROP TABLE facturas_may;
 
-DROP TABLE consumos_junio;
+DROP TABLE facturas_jun;
 
-DROP TABLE consumos_julio;
+DROP TABLE facturas_jul;
 
-DROP TABLE consumos_agosto;
+DROP TABLE facturas_aug;
 
-DROP TABLE consumos_septiembre;
+DROP TABLE facturas_sep;
 
-DROP TABLE consumos_octubre;
+DROP TABLE facturas_oct;
 
-DROP TABLE consumos_noviembre;
+DROP TABLE facturas_nov;
 
-DROP TABLE consumos_diciembre;
+DROP TABLE facturas_dic;
 
-DROP TABLE consumos;
+DROP TABLE facturas;
 DROP TABLE contratos;
 DROP TABLE clientes;
 

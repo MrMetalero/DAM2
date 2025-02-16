@@ -49,7 +49,7 @@ public class Main {
         //Nombre de la colección a insertar
         String currentDate = "2025-04";
 
-        //mongoDataBase.insertDummyData(1000, currentDate);  
+        //mongoDataBase.insertDummyData(10000, currentDate);  
 
         //mongoDataBase.deleteHourOneByName("contratos_04_2025","Jose2266");
         //mongoDataBase.deleteDocumentByName("contratos_04_2025","Jose1718");

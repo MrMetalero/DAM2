@@ -7,8 +7,8 @@ import org.bson.Document;
 
 public class DummyDataGenerator {
     public static List<Document> generateDummyData(int numberOfContracts, String date) {
-         // Start timing
         long startTime = System.nanoTime();
+
         RandomNumberGenerator generatorIdName = new RandomNumberGenerator(1, 100000);
         RandomNumberGenerator generatorIdContract = new RandomNumberGenerator(1, 100000);
 
@@ -51,7 +51,7 @@ public class DummyDataGenerator {
         long endTime = System.nanoTime();
         long duration = (endTime - startTime) / 1000000; 
     
-        System.out.println("Time taken:: " + duration + " ms  Mongito");
+        System.out.println("Time taken to generate data: " + duration + " ms  Mongito");
         return contractsList;
     }
 

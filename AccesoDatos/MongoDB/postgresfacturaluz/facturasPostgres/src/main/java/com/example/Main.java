@@ -16,7 +16,7 @@ public class Main {
             PostgresCrud postgresOps = new PostgresCrud(connection);
 
             // DUMMY DATA A SACO
-            //DummyDataGenerator.generateDummyData(connection, 1000, "2025-05");
+            //DummyDataGenerator.generateDummyData(connection, 10000, "2025-03");
 
             //postgresOps.insertClient("Jose", "ApellidoJose");
 
@@ -30,7 +30,7 @@ public class Main {
             //postgresOps.insertConsumo(1, "2025-04-01", 1, horas);
 
             // Calculate monthly bills
-            //postgresOps.calculateMonthlyBills(5);
+            postgresOps.calculateMonthlyBills(3);
 
             // Delete a client
             //postgresOps.deleteClient(5004);
