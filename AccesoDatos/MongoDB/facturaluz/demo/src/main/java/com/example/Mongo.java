@@ -28,7 +28,7 @@ public class Mongo {
     public MongoDatabase database;
 
     public void mongoConnection() {
-        String connectionString = "mongodb://localhost:27017";
+        String connectionString = "mongodb://mati:mati@localhost:27017";
 
         if (mongoClient == null) {
             try {
@@ -45,7 +45,7 @@ public class Mongo {
     }
 
     public void insertDummyData(int numberOfContracts, String date) {
-        String collectionName = "contratos_" + date.substring(5, 7) + "_" + date.substring(0, 4); // MM_YYYY format
+        String collectionName = "contratos_" + date.substring(5, 7) + "_" + date.substring(0, 4); 
 
         boolean collectionExists = database.listCollectionNames().into(new ArrayList<>()).contains(collectionName);
 

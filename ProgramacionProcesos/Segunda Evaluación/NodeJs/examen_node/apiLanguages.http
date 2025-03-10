@@ -1,0 +1,28 @@
+### Recuperar todos los lenguajes de programación, mostrando únicamente su nombre, que debe ser un enlace para obtener la información completa de ese lenguaje (ver el siguiente endpoint)
+GET http://localhost:1234/
+
+### Recuperar la información de un lenguaje por su ID. Se debe mostrar una web sencilla con toda la información del lenguaje
+GET http://localhost:1234/lang/3
+
+### Recuperar el json de un lenguaje por su nombre
+GET http://localhost:1234/lang?name=JavaScript
+
+### Mostrar una lista de nombres de los lenguajes, filtrados por paradigma
+GET http://localhost:1234/lang?paradigms=Functional
+
+### Añadir un nuevo lenguaje
+POST http://localhost:1234/lang
+Content-Type: application/json
+
+{
+  "name": "PHP",
+  "creation_year": 1995,
+  "creator": "Rasmus Lerdorf",
+  "type": "High-level, Interpreted",
+  "paradigms": ["Procedural", "Object-oriented", "Scripting"],
+  "benefits": ["Easy to learn", "Wide usage in web development", "Large community"],
+  "popular_frameworks": ["Laravel", "Symfony", "CodeIgniter"],
+  "use_cases": ["Web development", "Server-side scripting", "Content management systems"],
+  "community_size": "Very Large",
+  "notable_projects": ["WordPress", "Facebook (early)", "Wikipedia"]
+}

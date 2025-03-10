@@ -9,8 +9,8 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         String url = "jdbc:postgresql://localhost:5432/facturaluz";
-        String user = "postgres";
-        String password = "postgres";
+        String user = "mati";
+        String password = "mati";
 
         try (Connection connection = DriverManager.getConnection(url, user, password)) {
             PostgresCrud postgresOps = new PostgresCrud(connection);

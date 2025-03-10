@@ -1,0 +1,17 @@
+{
+  "name": "examen_node",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "crud": "^0.0.28",
+    "curl": "^0.1.4",
+    "express": "^4.21.2"
+  }
+}
